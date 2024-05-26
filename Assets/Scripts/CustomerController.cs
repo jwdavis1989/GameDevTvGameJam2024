@@ -49,7 +49,6 @@ public class CustomerController : MonoBehaviour
             
         }else if (other.CompareTag("Manager"))
         {
-            Debug.Log("Collision Manager!");
             gameController.addWriteUp();
             Destroy(gameObject);
         }
