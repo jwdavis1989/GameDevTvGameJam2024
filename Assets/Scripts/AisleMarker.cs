@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AisleMarker : MonoBehaviour
 {
-    public bool isBegin;
-    public bool isEnd;
+    public bool isLeft;
     public int aisleNumber;
+    public bool isActive; 
     private GameController gameController;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,10 @@ public class AisleMarker : MonoBehaviour
         //GameObject.Find("GameController").GetComponent<GameController>();
         //add self to aisles
         //gameController.aisles.Add(gameObject);
+    }
+    public bool isRight()
+    {
+        return !isLeft;
     }
 
     // Update is called once per frame

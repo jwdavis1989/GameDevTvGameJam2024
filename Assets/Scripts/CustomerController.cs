@@ -13,7 +13,7 @@ public class CustomerController : MonoBehaviour
     public GameObject moveTarget;
     public GameController gameController;
     private int currentAisle = 1;
-    private bool goingToBegin = true;
+    private bool goingToNextAisle = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,40 +31,91 @@ public class CustomerController : MonoBehaviour
         Vector3 newPosition = direction.normalized * speed * Time.deltaTime;
         transform.Translate(newPosition);
     }
+    public void spawn(GameController gameController, bool isOnLeft)
+    {
+        currentAisle = 0;
+        goingToNextAisle = false;
+        this.gameController = gameController;
+        this.SelectNextMoveTarget(isOnLeft);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collision!");
+        //Debug.Log("collision!");
         if (other.CompareTag("AisleMarker"))
         {
-            Debug.Log("collision aisle!");
-            bool begin = other.GetComponent<AisleMarker>().isBegin;
-            if(begin && goingToBegin) // reach beginning of aisle
+            //Debug.Log("collision aisle!");
+            bool onLeftSide = other.GetComponent<AisleMarker>().isLeft;
+            SelectNextMoveTarget(onLeftSide);
+            
+        }else if (other.CompareTag("Manager"))
+        {
+            Debug.Log("Collision Manager!");
+            gameController.addWriteUp();
+            Destroy(gameObject);
+        }
+    }
+    void SelectNextMoveTarget(bool onLeftSide)
+    {
+        if (goingToNextAisle)
+        {
+            goingToNextAisle = false;
+            //at next aisle now go to other side
+            GameObject result = null;
+            if (onLeftSide)
             {
-                goingToBegin = false;
-                currentAisle = other.GetComponent<AisleMarker>().aisleNumber;
-                GameObject result = gameController.aisles.Find((a) =>
+                result = gameController.aisles.Find((a) =>
                 {
                     AisleMarker marker = a.GetComponent<AisleMarker>();
-                    return marker.isEnd && marker.aisleNumber == currentAisle;
+                    return marker.isRight() && marker.aisleNumber == currentAisle;
                 });
-                if (result != null)
-                {
-                    moveTarget = result;
-                }
             }
-            else if(!begin && !goingToBegin) //Reached end of aisle
+            else
             {
-                goingToBegin = true;
-                currentAisle++;
-                GameObject result = gameController.aisles.Find((a) =>
+                result = gameController.aisles.Find((a) =>
                 {
                     AisleMarker marker = a.GetComponent<AisleMarker>();
-                    return marker.isBegin && marker.aisleNumber == currentAisle;
+                    return marker.isLeft && marker.aisleNumber == currentAisle;
                 });
-                if (result != null)
+            }
+            if (result != null)
+            {
+                moveTarget = result;
+            }
+            else
+            {
+                moveTarget = GameObject.FindWithTag("Manager");
+            }
+            
+        }
+        else
+        {//reached end of aisle get next aisle
+            //todo add isActive check and loop until last aisle
+            currentAisle++;
+            goingToNextAisle = true;
+            GameObject result = null;
+            if (onLeftSide)
+            {
+                result = gameController.aisles.Find((a) =>
                 {
-                    moveTarget = result;
-                }
+                    AisleMarker marker = a.GetComponent<AisleMarker>();
+                    return marker.isLeft && marker.aisleNumber == currentAisle;
+                });
+            }
+            else
+            {
+                result = gameController.aisles.Find((a) =>
+                {
+                    AisleMarker marker = a.GetComponent<AisleMarker>();
+                    return (!marker.isLeft) && marker.aisleNumber == currentAisle;
+                });
+            }
+            if (result != null)
+            {
+                moveTarget = result;
+            }
+            else
+            {
+                moveTarget = GameObject.FindWithTag("Manager");
             }
         }
     }
