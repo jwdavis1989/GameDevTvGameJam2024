@@ -3,6 +3,8 @@ using UnityEngine;
 public class TurretShop : MonoBehaviour
 {
     BuildManager buildManager;
+    public TurretBluePrint toasterTurret;
+    public TurretBluePrint consoleTurret;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,24 +16,24 @@ public class TurretShop : MonoBehaviour
     {
         if (Input.GetKeyDown("1"))
         {
-            Debug.Log("Basic Turret Selected.");
-            buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+            Debug.Log("Toaster Turret Selected.");
+            buildManager.SelectTurretToBuild(toasterTurret);
         }
 
         if (Input.GetKeyDown("2"))
         {
-            Debug.Log("Another Turret Selected.");
-            buildManager.SetTurretToBuild(buildManager.anotherTurretPrefab);
+            Debug.Log("Console Turret Selected.");
+            buildManager.SelectTurretToBuild(consoleTurret);
         }
     }
 
-    public void PurchaseBasicTurret() {
-        Debug.Log("Basic Turret Selected.");
-        buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+    public void SelectToasterTurret() {
+        Debug.Log("Toaster Turret Selected.");
+        buildManager.SelectTurretToBuild(toasterTurret);
     }
 
-    public void PurchaseAnotherTurret() {
-        Debug.Log("Another Turret Selected.");
-        buildManager.SetTurretToBuild(buildManager.anotherTurretPrefab);
+    public void SelectConsoleTurret() {
+        Debug.Log("Console Turret Selected.");
+        buildManager.SelectTurretToBuild(consoleTurret);
     }
 }

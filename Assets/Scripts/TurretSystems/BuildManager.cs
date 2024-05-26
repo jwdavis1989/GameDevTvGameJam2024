@@ -5,9 +5,9 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
-    public GameObject standardTurretPrefab;
-    public GameObject anotherTurretPrefab;
-    private GameObject turretToBuild;
+    public GameObject toasterTurretPrefab;
+    public GameObject consoleTurretPrefab;
+    private TurretBluePrint turretToBuild;
 
     void Awake() {
         if (instance) {
@@ -27,11 +27,14 @@ public class BuildManager : MonoBehaviour
         
     }
 
-    public GameObject GetTurretToBuild() {
-        return turretToBuild;
+    public bool CanBuild { get { return turretToBuild != null;} }
+
+    public void SelectTurretToBuild(TurretBluePrint turret) {
+        turretToBuild = turret;
     }
 
-    public void SetTurretToBuild(GameObject turret) {
-        turretToBuild = turret;
+    public void BuildTurretOn(NodeController node) {
+        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity); 
+        node.turretRef = turret;
     }
 }

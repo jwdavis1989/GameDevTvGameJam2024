@@ -190,7 +190,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_text
-      value: 2 Blue
+      value: '[2] Console'
+      objectReference: {fileID: 0}
+    - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
+      propertyPath: m_fontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3281696266579556049, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -198,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 2141035984}
     - target: {fileID: 3281696266579556049, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseAnotherTurret
+      value: SelectConsoleTurret
       objectReference: {fileID: 0}
     - target: {fileID: 6018255552030410566, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_Name
@@ -304,6 +316,10 @@ PrefabInstance:
     - target: {fileID: 1271805707892591700, guid: 675848b168a204c45a4e97188da721bd, type: 3}
       propertyPath: m_Name
       value: Node (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860341257261978660, guid: 675848b168a204c45a4e97188da721bd, type: 3}
+      propertyPath: turretRef
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3600729273903942632, guid: 675848b168a204c45a4e97188da721bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1139,6 +1155,14 @@ PrefabInstance:
       propertyPath: anotherTurretPrefab
       value: 
       objectReference: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
+    - target: {fileID: 2213470808935573773, guid: 213b2ad7b0c0b9d46948cd8c3ead1f45, type: 3}
+      propertyPath: consoleTurretPrefab
+      value: 
+      objectReference: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
+    - target: {fileID: 2213470808935573773, guid: 213b2ad7b0c0b9d46948cd8c3ead1f45, type: 3}
+      propertyPath: toasterTurretPrefab
+      value: 
+      objectReference: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
     - target: {fileID: 3991417253384384562, guid: 213b2ad7b0c0b9d46948cd8c3ead1f45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1306,6 +1330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ffc4cfbb869f041a6d2a770844b697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toasterTurret:
+    prefab: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
+    cost: 1
+  consoleTurret:
+    prefab: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
+    cost: 2
 --- !u!1001 &657453077927414915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1383,10 +1413,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2141035980}
     m_Modifications:
-    - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
-      propertyPath: m_text
-      value: 1 Red
-      objectReference: {fileID: 0}
     - target: {fileID: 3281696266579556049, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1394,22 +1420,6 @@ PrefabInstance:
     - target: {fileID: 6018255552030410566, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_Name
       value: BuyTurretButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6383265318209083573, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
-      propertyPath: m_IgnoreLayout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6383265318209083573, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
-      propertyPath: m_FlexibleWidth
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6383265318209083573, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
-      propertyPath: m_FlexibleHeight
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6383265318209083573, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
-      propertyPath: m_PreferredHeight
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8039024023975622445, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_Pivot.x

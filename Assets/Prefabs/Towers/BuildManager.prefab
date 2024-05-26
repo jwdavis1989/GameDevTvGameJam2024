@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a908ab528677ca4ea29ea4603f7b7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standardTurretPrefab: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
+  toasterTurretPrefab: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
+  consoleTurretPrefab: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
