@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NodeController : MonoBehaviour
 {
@@ -9,11 +8,13 @@ public class NodeController : MonoBehaviour
     private Color baseColor;
     private Renderer rendererRef;
     private GameObject turretRef;
+    private BuildManager buildManager;
     // Start is called before the first frame update
     void Start()
     {
         rendererRef = GetComponent<Renderer>();
         baseColor = rendererRef.material.color;
+        buildManager = BuildManager.instance;
     }
 
     // Update is called once per frame
@@ -23,19 +24,23 @@ public class NodeController : MonoBehaviour
     }
 
     void OnMouseDown() {
-        if (turretRef) {
-            Debug.Log("Can't Build There! TODO: Display on Screen");
-            return;
+        if (buildManager.GetTurretToBuild() && !EventSystem.current.IsPointerOverGameObject()) {
+            if (turretRef) {
+                Debug.Log("Can't Build There! TODO: Display on Screen");
+                return;
+            }
+            //Debug.Log(BuildManager.instance);
+            Debug.Log(buildManager.GetTurretToBuild());
+            //Build a Turret
+            GameObject turretToBuild = buildManager.GetTurretToBuild();
+            turretRef = (GameObject)Instantiate(turretToBuild, transform.position + buildPositionOffset, transform.rotation);            
         }
-        //Debug.Log(BuildManager.instance);
-        Debug.Log(BuildManager.instance.GetTurretToBuild());
-        //Build a Turret
-        GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-        turretRef = (GameObject)Instantiate(turretToBuild, transform.position + buildPositionOffset, transform.rotation);
     }
 
     void OnMouseEnter() {
-        rendererRef.material.color = hoverColor;
+        if (buildManager.GetTurretToBuild() && !EventSystem.current.IsPointerOverGameObject()) {
+            rendererRef.material.color = hoverColor;
+        }
     }
 
     void OnMouseExit() {
