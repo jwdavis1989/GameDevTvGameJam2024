@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Turret
   - Customer
+  - AisleMarker
   layers:
   - Default
   - TransparentFX
