@@ -1222,14 +1222,6 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1475445160}
-    - target: {fileID: 5423182602899212128, guid: ff4a0733e210feb469b9a1967d97efb5, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 602ac50ce209b1c4b9494ad2f88cea2d, type: 2}
-    - target: {fileID: 6104476079894688242, guid: ff4a0733e210feb469b9a1967d97efb5, type: 3}
-      propertyPath: m_Constraints
-      value: 84
-      objectReference: {fileID: 0}
     - target: {fileID: 7478241856076919410, guid: ff4a0733e210feb469b9a1967d97efb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15
@@ -1273,10 +1265,6 @@ PrefabInstance:
     - target: {fileID: 8037688080541746767, guid: ff4a0733e210feb469b9a1967d97efb5, type: 3}
       propertyPath: m_Name
       value: CustomerAdult
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037688080541746767, guid: ff4a0733e210feb469b9a1967d97efb5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
