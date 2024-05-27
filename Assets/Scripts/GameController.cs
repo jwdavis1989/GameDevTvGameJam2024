@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     public int managerWriteUps = 0;
     public int maxManagerWriteUps = 10;
     public static int money;
-    public int startingMoney = 5;
+    public int startingMoney = 500;
 
     void Awake() {
         if (instance) {
