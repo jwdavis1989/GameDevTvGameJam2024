@@ -9,12 +9,14 @@ public class GameController : MonoBehaviour
     public bool SpawnMode;
     public bool BuildMode;
     public TextMeshProUGUI managerWriteUpText;
+    public TextMeshProUGUI moneyText; 
     public static GameController instance;
 
     [Header("Player Global Attributes")]
     public int managerWriteUps = 0;
+    public int maxManagerWriteUps = 10;
     public static int money;
-    public int startingMoney = 2;
+    public int startingMoney = 5;
 
     void Awake() {
         if (instance) {
@@ -27,8 +29,9 @@ public class GameController : MonoBehaviour
     void Start()
     {
         managerWriteUps = 0;
-        managerWriteUpText.text = "Manager Write-Ups " + managerWriteUps + " / 5";
+        managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / " + maxManagerWriteUps;
         money = startingMoney;
+        UpdateMoneyTextDisplay();
     }
 
     // Update is called once per frame
@@ -45,7 +48,11 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            managerWriteUpText.text = "Manager Write-Ups " + managerWriteUps + " / 5";
+            managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / 5";
         }
+    }
+
+    public void UpdateMoneyTextDisplay() {
+        moneyText.text = "$" + money;
     }
 }
