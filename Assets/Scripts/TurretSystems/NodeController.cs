@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 public class NodeController : MonoBehaviour
 {
     public Color hoverColor;
+    public Color notEnoughMoneyColor;
     public Vector3 buildPositionOffset = new Vector3(0f, 0.05f, 0f);
     private Color baseColor;
     private Renderer rendererRef;
@@ -39,8 +40,13 @@ public class NodeController : MonoBehaviour
     }
 
     void OnMouseEnter() {
-        if (buildManager.CanBuild && !EventSystem.current.IsPointerOverGameObject()) {
-            rendererRef.material.color = hoverColor;
+        if (!EventSystem.current.IsPointerOverGameObject() && buildManager.CanBuild) {
+            if (buildManager.HasMoney) {
+                rendererRef.material.color = hoverColor;
+            }
+            else {
+                rendererRef.material.color = notEnoughMoneyColor;
+            }
         }
     }
 

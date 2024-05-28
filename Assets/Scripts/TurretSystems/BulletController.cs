@@ -57,7 +57,7 @@ public class BulletController : MonoBehaviour
     public void Damage(Transform enemy) {
         //Damage the target once Customer class is established and integrated
         //Destroy(enemy.gameObject);
-        Debug.Log("Fuck you Karen!");
+        //Debug.Log("Target Hit");
     } 
 
     public void Explode() {
