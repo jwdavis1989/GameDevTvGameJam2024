@@ -6,10 +6,8 @@ public class AisleController : MonoBehaviour
 {
     public int aisleNumber = 0;
     public bool isActive = true;
-    public GameObject WestMarker;
-    public AisleMarker WestMarkerScript;
-    public GameObject EastMarker;
-    public AisleMarker EastMarkerScript;
+    public GameObject westMarker;
+    public GameObject eastMarker;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +18,19 @@ public class AisleController : MonoBehaviour
     void Update()
     {
         
+    }
+    public GameObject getClosestSide(Vector3 position)
+    {
+        if(Vector3.Distance(position, westMarker.transform.position)
+            > Vector3.Distance(position, eastMarker.transform.position))
+        return eastMarker;
+        else return westMarker;
+    }
+    public GameObject getFarthestSide(Vector3 position)
+    {
+        if (Vector3.Distance(position, westMarker.transform.position)
+            > Vector3.Distance(position, eastMarker.transform.position))
+            return westMarker;
+        else return eastMarker;
     }
 }

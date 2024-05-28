@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6470663304581536406}
   - component: {fileID: 8738683271457446879}
   m_Layer: 0
-  m_Name: AisleMarker
+  m_Name: AisleMarkerOld
   m_TagString: AisleMarker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
