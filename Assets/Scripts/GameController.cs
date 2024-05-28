@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour
     public int maxManagerWriteUps = 10;
     public static int money;
     public int startingMoney = 500;
+    [Header("Options Menu Settings")]
+    public bool isTurretFireSoundOn = true;
+    public bool isBackgroundMusicOn = true;
 
     void Awake() {
         if (instance) {
