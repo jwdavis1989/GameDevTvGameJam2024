@@ -65,4 +65,8 @@ public class GameController : MonoBehaviour
         Debug.Log("Game Over!");
         //Add Game Over Screen Transition Here
     }
+
+    public void ChangeGameMode() {
+        //Ticket: |[P*] GameController ChangeGameMode() function|
+    }
 }
