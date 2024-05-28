@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour
     public int maxManagerWriteUps = 10;
     public static int money;
     public int startingMoney = 500;
+    [Header("Options Menu Settings")]
+    public bool isTurretFireSoundOn = true;
+    public bool isBackgroundMusicOn = true;
 
     void Awake() {
         if (instance) {
@@ -37,7 +40,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (managerWriteUps >= maxManagerWriteUps) {
+            GameOver();
+        }
     }
     public void addWriteUp()
     {
@@ -54,5 +59,14 @@ public class GameController : MonoBehaviour
 
     public void UpdateMoneyTextDisplay() {
         moneyText.text = "$" + money;
+    }
+
+    private void GameOver() {
+        Debug.Log("Game Over!");
+        //Add Game Over Screen Transition Here
+    }
+
+    public void ChangeGameMode() {
+        //Ticket: |[P*] GameController ChangeGameMode() function|
     }
 }
