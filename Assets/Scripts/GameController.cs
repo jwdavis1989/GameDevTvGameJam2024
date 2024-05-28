@@ -37,7 +37,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (managerWriteUps >= maxManagerWriteUps) {
+            GameOver();
+        }
     }
     public void addWriteUp()
     {
@@ -54,5 +56,10 @@ public class GameController : MonoBehaviour
 
     public void UpdateMoneyTextDisplay() {
         moneyText.text = "$" + money;
+    }
+
+    private void GameOver() {
+        Debug.Log("Game Over!");
+        //Add Game Over Screen Transition Here
     }
 }
