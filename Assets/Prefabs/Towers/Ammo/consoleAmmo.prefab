@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823523eff14cd474a972f75d0784a4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 7
   explosionRadius: 0
+  turretObjectReference: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
   impactParticleEffect: {fileID: 0}

@@ -6,7 +6,7 @@ public class CustomerController : MonoBehaviour
 {
     //stats
     [Header("Attributes")]
-    public int health;
+    public float health;
     public float speed;
     //behavior
     [Header("Behavior")]

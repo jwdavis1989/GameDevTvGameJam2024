@@ -340,12 +340,17 @@ Transform:
   m_GameObject: {fileID: 492879271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.69, y: 4.55, z: -1.6}
+  m_LocalPosition: {x: -3.69, y: 4.55, z: -7.49}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &708238230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5609774184060019746, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+  m_PrefabInstance: {fileID: 9217143025472584956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &779919688 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1398373122414070180, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
@@ -1163,7 +1168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: aisles.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: managerWriteUpText
@@ -1307,6 +1312,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb1f80f2d3755ef4884f07d73b5848e1, type: 3}
+--- !u!1001 &1122360200512110356
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2830675126490910847, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_Name
+      value: LawnMowerTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171713331671685339, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
 --- !u!1001 &9217143025472584956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1395,6 +1457,78 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: buildButtonPrefab
+      value: 
+      objectReference: {fileID: 708238230}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: consoleTurret.name
+      value: Console
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: toasterTurret.name
+      value: Toaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: consoleTurret.hotkey
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: lawnMowerTurret.cost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: lawnMowerTurret.name
+      value: Lawnmower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: toasterTurret.hotkey
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: lawnMowerTurret.hotkey
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: lawnMowerTurret.prefab
+      value: 
+      objectReference: {fileID: 2830675126490910847, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[0].cost
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[0].name
+      value: Toaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[1].cost
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[1].name
+      value: Console
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[0].hotkey
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[1].hotkey
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
     - target: {fileID: 8097346553893104149, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_Name
       value: Main UI - Canvas
@@ -1474,3 +1608,4 @@ SceneRoots:
   - {fileID: 9217143025472584956}
   - {fileID: 1972319001}
   - {fileID: 1186129819}
+  - {fileID: 1122360200512110356}
