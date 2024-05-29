@@ -10,10 +10,10 @@ public class CustomerController : MonoBehaviour
     public float speed;
     //behavior
     [Header("Behavior")]
-    public GameObject moveTarget;
+    private GameObject moveTarget;
     public GameController gameController;
-    private int currentAisle = 1;
-    private bool goingToNextAisle = true;
+    private int currentAisle = 0;
+    private bool goingToNextAisle = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +27,13 @@ public class CustomerController : MonoBehaviour
     }
     void moveForward()
     {
-        if (moveTarget) {
-            Vector3 direction = moveTarget.transform.position - transform.position;
-            Vector3 newPosition = direction.normalized * speed * Time.deltaTime;
-            transform.Translate(newPosition);
+        if(moveTarget == null)
+        {
+            SelectNextMoveTarget();
+        }
+        Vector3 direction = moveTarget.transform.position - transform.position;
+        Vector3 newPosition = direction.normalized * speed * Time.deltaTime;
+        transform.Translate(newPosition);
 
             //Quaternion lookRotation = Quaternion.LookRotation(direction);
             //Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
@@ -42,16 +45,17 @@ public class CustomerController : MonoBehaviour
         currentAisle = 0;
         goingToNextAisle = false;
         this.gameController = gameController;
-        this.SelectNextMoveTarget(isOnLeft);
+        this.SelectNextMoveTarget();
     }
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("collision!");
         if (other.CompareTag("AisleMarker"))
         {
-            //Debug.Log("collision aisle!");
-            bool onLeftSide = other.GetComponent<AisleMarker>().isLeft;
-            SelectNextMoveTarget(onLeftSide);
+            if(other.GetComponent<AisleMarker>() != null && other.GetComponent<AisleMarker>().isActive()) {
+                SelectNextMoveTarget();
+                Debug.Log("Collision Selecting next move");
+            }
             
         }else if (other.CompareTag("Manager"))
         {
@@ -59,36 +63,24 @@ public class CustomerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void SelectNextMoveTarget(bool onLeftSide)
+    void SelectNextMoveTarget()
     {
         if (goingToNextAisle)
         {
             goingToNextAisle = false;
             //at next aisle now go to other side
-            GameObject result = null;
-            if (onLeftSide)
+            GameObject currentAisleObject = null;
+            currentAisleObject = gameController.aisles.Find((a) =>
             {
-                result = gameController.aisles.Find((a) =>
-                {
-                    AisleMarker marker = a.GetComponent<AisleMarker>();
-                    return marker.isRight() && marker.aisleNumber == currentAisle;
-                });
+                return a.GetComponent<AisleController>().aisleNumber == currentAisle;
+            });
+            if(currentAisleObject != null)
+            {
+                this.moveTarget = currentAisleObject.GetComponent<AisleController>().getFarthestSide(transform.position);
             }
-            else
+            else // TODO LOOP FOR AISLE SKIPPING INACTIVE
             {
-                result = gameController.aisles.Find((a) =>
-                {
-                    AisleMarker marker = a.GetComponent<AisleMarker>();
-                    return marker.isLeft && marker.aisleNumber == currentAisle;
-                });
-            }
-            if (result != null)
-            {
-                moveTarget = result;
-            }
-            else
-            {
-                moveTarget = GameObject.FindWithTag("Manager");
+                this.moveTarget = GameObject.FindWithTag("Manager");
             }
             
         }
@@ -97,30 +89,27 @@ public class CustomerController : MonoBehaviour
             //todo add isActive check and loop until last aisle
             currentAisle++;
             goingToNextAisle = true;
-            GameObject result = null;
-            if (onLeftSide)
+            GameObject currentAisleObject = null;
+            currentAisleObject = gameController.aisles.Find((a) =>
             {
-                result = gameController.aisles.Find((a) =>
+                return a.GetComponent<AisleController>().aisleNumber == currentAisle;
+            });
+            //skip over inactve
+            while (currentAisleObject != null && !currentAisleObject.GetComponent<AisleController>().isActive) {
+                currentAisle++;
+                currentAisleObject = null;
+                currentAisleObject = gameController.aisles.Find((a) =>
                 {
-                    AisleMarker marker = a.GetComponent<AisleMarker>();
-                    return marker.isLeft && marker.aisleNumber == currentAisle;
+                    return a.GetComponent<AisleController>().aisleNumber == currentAisle && a.GetComponent<AisleController>().isActive;
                 });
             }
-            else
+            if (currentAisleObject != null)
             {
-                result = gameController.aisles.Find((a) =>
-                {
-                    AisleMarker marker = a.GetComponent<AisleMarker>();
-                    return (!marker.isLeft) && marker.aisleNumber == currentAisle;
-                });
+                this.moveTarget = currentAisleObject.GetComponent<AisleController>().getClosestSide(transform.position);
             }
-            if (result != null)
+            else // TODO LOOP FOR AISLE SKIPPING INACTIVE
             {
-                moveTarget = result;
-            }
-            else
-            {
-                moveTarget = GameObject.FindWithTag("Manager");
+                this.moveTarget = GameObject.FindWithTag("Manager");
             }
         }
     }
