@@ -35,9 +35,10 @@ public class CustomerController : MonoBehaviour
         Vector3 newPosition = direction.normalized * speed * Time.deltaTime;
         transform.Translate(newPosition);
 
-        //Quaternion lookRotation = Quaternion.LookRotation(direction);
-        //Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
-        //transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            //Quaternion lookRotation = Quaternion.LookRotation(direction);
+            //Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
+            //transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        }
     }
     public void spawn(GameController gameController, bool isOnLeft)
     {
