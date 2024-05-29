@@ -52,6 +52,7 @@ public class TurretController : MonoBehaviour
 
         if (bullet) {
             bullet.SetTarget(target);
+            bullet.damage = damage;
         }
 
         if (fireSound && GameController.instance.isTurretFireSoundOn) {

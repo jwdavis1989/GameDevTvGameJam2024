@@ -3,8 +3,13 @@ using UnityEngine;
 public class TurretShop : MonoBehaviour
 {
     BuildManager buildManager;
+    //public TurretBluePrint[] turrets;
     public TurretBluePrint toasterTurret;
     public TurretBluePrint consoleTurret;
+    public TurretBluePrint lawnMowerTurret;
+    public TurretBluePrint cassetteTurret;
+    public TurretBluePrint microwaveTurret;
+    public TurretBluePrint generatorTurret;
     // Start is called before the first frame update
     void Start()
     {

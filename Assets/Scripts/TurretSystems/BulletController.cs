@@ -7,9 +7,9 @@ public class BulletController : MonoBehaviour
     public float explosionRadius = 0f;
 
     [Header("Unity Setup")]
-    public GameObject turretObjectReference;
     public GameObject impactParticleEffect = null;
     private Transform target;
+    public float damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +56,7 @@ public class BulletController : MonoBehaviour
     }
 
     public void Damage(Transform enemy) {
-        enemy.GetComponent<CustomerController>().health -= turretObjectReference.GetComponent<TurretController>().damage;
+        enemy.GetComponent<CustomerController>().health -= damage;
     } 
 
     public void Explode() {
