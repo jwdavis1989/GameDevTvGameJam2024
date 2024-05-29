@@ -125,4 +125,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   explosionRadius: 0
+  turretObjectReference: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
   impactParticleEffect: {fileID: 0}

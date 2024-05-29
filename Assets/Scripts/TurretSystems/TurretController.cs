@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     [Header("Attributes")]
-    public float damage = 5.0f;
+    public float damage = 50.0f;
     public float range = 5f;
     public float attackSpeed = 1.0f;
     public float turnSpeed = 10f;
@@ -52,6 +52,7 @@ public class TurretController : MonoBehaviour
 
         if (bullet) {
             bullet.SetTarget(target);
+            bullet.damage = damage;
         }
 
         if (fireSound && GameController.instance.isTurretFireSoundOn) {
