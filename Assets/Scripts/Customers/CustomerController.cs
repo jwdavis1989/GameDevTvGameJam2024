@@ -11,13 +11,14 @@ public enum CustomerType
     Scooter,
     RollerskateKid,
     Mom,
-    Dad
+    Dad,
+    DisgruntledEmployee
 }
-public class CustomerController : MonoBehaviour
+public class CustomerController : MonoBehaviour 
 {
     //stats
     [Header("Attributes")]
-    public int health;
+    public int health; 
     public float speed;
     public int money;
     public CustomerType type;
@@ -29,6 +30,7 @@ public class CustomerController : MonoBehaviour
     public GameObject bodyParts;
     private int currentAisle = 0;
     private bool goingToNextAisle = false;
+    private bool karenBoosted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,10 +59,7 @@ public class CustomerController : MonoBehaviour
             Destroy(gameObject);
         }
         moveForward();
-        //float rotationSpeed = 90;
-        //float whichWay = Vector3.Cross(transform.forward, moveTarget.transform.position).y; //Return left or right?
-        //if (whichWay < 0) { transform.Rotate(0, -rotationSpeed * Time.fixedDeltaTime, 0); } //If -ve we go CCW 
-        //if (whichWay > 0) { transform.Rotate(0, rotationSpeed * Time.fixedDeltaTime, 0); }  //IF +ve we go CW
+        
     }
  
     void FixedUpdate()
@@ -73,25 +72,29 @@ public class CustomerController : MonoBehaviour
         {
             SelectNextMoveTarget();
         }
-
-
         Vector3 direction = moveTarget.transform.position - transform.position;
         Vector3 newPosition = direction.normalized * speed * Time.deltaTime;
         transform.Translate(newPosition);
         //transform.forward = newPosition;
         if(bodyParts != null)
         {
-            bodyParts.transform.LookAt(moveTarget.transform.position);
+            //ROTATION
+            bodyParts.transform.LookAt(moveTarget.transform.position);//method4
+            //method1
+            //Quaternion lookRotation = Quaternion.LookRotation(direction);
+            //Vector3 rotation = Quaternion.Lerp(bodyParts.transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
+            //bodyParts.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            //method2
+            //Vector3 posDifference = moveTarget.transform.position - bodyParts.transform.position;
+            //Quaternion rotation = Quaternion.LookRotation(posDifference);
+            ////Smooth rotate towards target
+            //bodyParts.transform.rotation = Quaternion.Slerp(bodyParts.transform.rotation, rotation, Time.deltaTime);
+            //method3
+            //float rotationSpeed = .1f;
+            //float whichWay = Vector3.Cross(bodyParts.transform.forward, moveTarget.transform.position).y; //Return left or right?
+            //if (whichWay < 0) { bodyParts.transform.Rotate(0, -rotationSpeed * Time.fixedDeltaTime, 0); } //If -ve we go CCW 
+            //if (whichWay > 0) { bodyParts.transform.Rotate(0, rotationSpeed * Time.fixedDeltaTime, 0); }  //IF +ve we go CW
         }
-
-        //Quaternion lookRotation = Quaternion.LookRotation(direction);
-        //Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
-        //transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-        //m2
-        //Vector3 posDifference = moveTarget.transform.position - transform.position;
-        //Quaternion rotation = Quaternion.LookRotation(posDifference);
-        ////Smooth rotate towards target
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
     }
     public void spawn(GameController gameController)
     {
@@ -126,6 +129,14 @@ public class CustomerController : MonoBehaviour
                 gameController.addWriteUp();
             }
             Destroy(gameObject);
+        }
+        else if (other.CompareTag("Customer"))
+        {
+            if (!karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
+            {
+                //Speed up other...
+                other.GetComponent<CustomerController>().speed += 20;
+            }
         }
     }
     public void setAisle(int aisle)
