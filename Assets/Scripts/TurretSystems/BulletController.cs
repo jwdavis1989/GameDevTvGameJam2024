@@ -7,6 +7,7 @@ public class BulletController : MonoBehaviour
     public float explosionRadius = 0f;
 
     [Header("Unity Setup")]
+    public GameObject turretObjectReference;
     public GameObject impactParticleEffect = null;
     private Transform target;
     // Start is called before the first frame update
@@ -55,9 +56,7 @@ public class BulletController : MonoBehaviour
     }
 
     public void Damage(Transform enemy) {
-        //Damage the target once Customer class is established and integrated
-        //Destroy(enemy.gameObject);
-        //Debug.Log("Target Hit");
+        enemy.GetComponent<CustomerController>().health -= turretObjectReference.GetComponent<TurretController>().damage;
     } 
 
     public void Explode() {
