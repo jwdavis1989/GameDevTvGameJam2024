@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
     [Header("Unity Setup")]
     public GameObject impactParticleEffect = null;
     private Transform target;
+    public float damage = 50;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,9 +56,9 @@ public class BulletController : MonoBehaviour
     }
 
     public void Damage(Transform enemy) {
-        //Damage the target once Customer class is established and integrated
-        //Destroy(enemy.gameObject);
-        //Debug.Log("Target Hit");
+        if (enemy.GetComponent<CustomerController>()) {
+            enemy.GetComponent<CustomerController>().health -= damage;
+        }
     } 
 
     public void Explode() {
