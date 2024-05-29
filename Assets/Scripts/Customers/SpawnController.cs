@@ -28,7 +28,7 @@ public class SpawnController : MonoBehaviour
         {
             int index = Random.Range(0, customerTypes.Count);
             GameObject newCustomer = Instantiate(customerTypes[index], spawnLocation, customerTypes[index].transform.rotation);
-            newCustomer.GetComponent<CustomerController>().spawn(gameController, true);//start on left
+            newCustomer.GetComponent<CustomerController>().spawn(gameController);//start on left
         }
     }
 }

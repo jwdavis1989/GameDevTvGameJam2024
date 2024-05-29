@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2032410702897909733}
   - component: {fileID: 2221738189878993329}
   m_Layer: 0
-  m_Name: CustomerKaren
+  m_Name: CustomerKAREN
   m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,8 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 150
-  speed: 15
-  moveTarget: {fileID: 0}
+  speed: 12.5
+  money: 150
+  type: 0
   gameController: {fileID: 0}
 --- !u!54 &2221738189878993329
 Rigidbody:
@@ -148,5 +149,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 0
   m_CollisionDetection: 0

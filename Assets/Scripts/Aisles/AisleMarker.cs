@@ -14,9 +14,10 @@ public class AisleMarker : MonoBehaviour
     {
         //set invisible
         Renderer renderer = this.GetComponent<Renderer>();
-        Color color = renderer.material.color;
-        color.a = 0.0f;
-        renderer.material.color = color;
+        //Color color = renderer.material.color;
+        //color.a = 0.0f;
+        //renderer.material.color = color;
+        renderer.enabled = false;
 
         //GameObject.Find("GameController").GetComponent<GameController>();
         //add self to aisles
