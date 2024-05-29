@@ -101,7 +101,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -124,6 +124,8 @@ MonoBehaviour:
   money: 150
   type: 0
   gameController: {fileID: 0}
+  toddlerPrefab: {fileID: 0}
+  bodyParts: {fileID: 0}
 --- !u!54 &2221738189878993329
 Rigidbody:
   m_ObjectHideFlags: 0

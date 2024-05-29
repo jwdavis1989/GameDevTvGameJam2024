@@ -132,10 +132,10 @@ public class CustomerController : MonoBehaviour
         }
         else if (other.CompareTag("Customer"))
         {
-            if (!karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
+            if (!other.GetComponent<CustomerController>().karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
             {
                 //Speed up other...
-                other.GetComponent<CustomerController>().speed += 20;
+                other.GetComponent<CustomerController>().speed += 5;
             }
         }
     }
