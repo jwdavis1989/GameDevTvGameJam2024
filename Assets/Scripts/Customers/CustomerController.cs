@@ -134,6 +134,7 @@ public class CustomerController : MonoBehaviour
         {
             if (!other.GetComponent<CustomerController>().karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
             {
+                other.GetComponent<CustomerController>().karenBoosted = true;
                 //Speed up other...
                 other.GetComponent<CustomerController>().speed += 5;
             }
