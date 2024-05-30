@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
 
+        Cursor.lockState = CursorLockMode.Locked;
+
         //Attacking
         if (canAttack && Input.GetMouseButtonDown(0))
         {
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
         //Sprint Movement
         float currentSpeed = playerSpeed;
-        if (canSprint && Input.GetKeyDown(KeyCode.LeftShift))
+        if (canSprint && groundedPlayer && Input.GetKeyDown(KeyCode.LeftShift))
         {
             isSprinting = true;
             if (canSprint)
@@ -156,10 +158,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SprintDuration()
     {
-        Debug.Log("Sprinting started");
         yield return new WaitForSeconds(sprintDuration);
         isSprinting = false;
-        Debug.Log("Sprinting ended, starting cooldown");
         StartCoroutine(SprintCooldown());
     }
 }
