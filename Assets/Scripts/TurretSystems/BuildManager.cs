@@ -7,6 +7,7 @@ public class BuildManager : MonoBehaviour
     public static BuildManager instance;
     public GameObject toasterTurretPrefab;
     public GameObject consoleTurretPrefab;
+    public GameObject buildParticleEffect;
     private TurretBluePrint turretToBuild;
 
     void Awake() {
@@ -43,6 +44,12 @@ public class BuildManager : MonoBehaviour
             //Build the Turret
             GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity); 
             node.turretRef = turret;
+
+            if (buildParticleEffect) {
+                GameObject buildEffect = (GameObject)Instantiate(buildParticleEffect, node.GetBuildPosition(), Quaternion.identity);
+                //Destroy the particle effect after x seconds
+                Destroy(buildEffect, 3f);
+            }
         }
         else {
             Debug.Log("Insufficient Money");

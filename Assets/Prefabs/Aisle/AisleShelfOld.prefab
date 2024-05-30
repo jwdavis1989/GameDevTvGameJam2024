@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2619113810463270499}
   - component: {fileID: 2369207451496900756}
   m_Layer: 0
-  m_Name: AisleShelf
+  m_Name: AisleShelfOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
