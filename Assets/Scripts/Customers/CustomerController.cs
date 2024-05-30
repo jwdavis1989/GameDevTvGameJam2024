@@ -118,7 +118,7 @@ public class CustomerController : MonoBehaviour
             if(other.GetComponent<AisleMarker>() != null && other.GetComponent<AisleMarker>().isActive() 
                 && other.GetComponent<AisleMarker>().aisle.GetComponent<AisleController>().aisleNumber == currentAisle) {
                 SelectNextMoveTarget();
-                Debug.Log("Collision Selecting next move"); 
+                //Debug.Log("Collision Selecting next move"); 
             }
             
         }else if (other.CompareTag("Manager"))
@@ -132,11 +132,10 @@ public class CustomerController : MonoBehaviour
         }
         else if (other.CompareTag("Customer"))
         {
-            if (!other.GetComponent<CustomerController>().karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
+            if (!karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
             {
-                other.GetComponent<CustomerController>().karenBoosted = true;
-                //Speed up other...
-                other.GetComponent<CustomerController>().speed += 5;
+                karenBoosted = true;
+                speed += 10;
             }
         }
     }
