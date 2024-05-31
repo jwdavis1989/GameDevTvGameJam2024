@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     [Header("Options Menu Settings")]
     public bool isTurretFireSoundOn = true;
     public bool isBackgroundMusicOn = true;
+    public bool isDeathSoundOn = true;
     public bool isMouseCameraPanEnabled = true;
     public float globalVolume = 1f;
 

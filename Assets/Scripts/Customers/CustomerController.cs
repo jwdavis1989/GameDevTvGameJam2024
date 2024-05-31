@@ -12,7 +12,8 @@ public enum CustomerType
     RollerskateKid,
     Mom,
     Dad,
-    DisgruntledEmployee
+    DisgruntledEmployee,
+    CEO
 }
 public class CustomerController : MonoBehaviour 
 {
@@ -31,10 +32,15 @@ public class CustomerController : MonoBehaviour
     private int currentAisle = 0;
     private bool goingToNextAisle = false;
     private bool karenBoosted = false;
+    private bool ceoBoosted = false;
+    private AudioSource deathSound;
+    private GameObject fromTarget;
+    private bool goingToCenter = false;
     // Start is called before the first frame update
     void Start()
     {
         //gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +48,10 @@ public class CustomerController : MonoBehaviour
     {
         if(health <= 0.0f)
         {
+            if (deathSound && GameController.instance.isDeathSoundOn)
+            {
+                deathSound.Play();
+            }
             //TODO drop moneys
             if (type == CustomerType.Mom)
             { // Spawn toddlers on Mom death
@@ -118,13 +128,22 @@ public class CustomerController : MonoBehaviour
             if(other.GetComponent<AisleMarker>() != null && other.GetComponent<AisleMarker>().isActive() 
                 && other.GetComponent<AisleMarker>().aisle.GetComponent<AisleController>().aisleNumber == currentAisle) {
                 SelectNextMoveTarget();
-                Debug.Log("Collision Selecting next move"); 
+                //Debug.Log("Collision Selecting next move"); 
+            }else if (goingToCenter && other.GetComponent<AisleMarker>() != null && other.GetComponent<AisleMarker>().isActive())
+            {
+                SelectNextMoveTarget();
             }
-            
-        }else if (other.CompareTag("Manager"))
+
+
+        }
+        else if (other.CompareTag("Manager"))
         {
             gameController.addWriteUp();
-            if(type == CustomerType.KAREN)
+            if(type == CustomerType.KAREN || type == CustomerType.CEO)
+            {
+                gameController.addWriteUp();
+            }
+            if (ceoBoosted)
             {
                 gameController.addWriteUp();
             }
@@ -132,11 +151,13 @@ public class CustomerController : MonoBehaviour
         }
         else if (other.CompareTag("Customer"))
         {
-            if (!other.GetComponent<CustomerController>().karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
+            if (!karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
             {
-                other.GetComponent<CustomerController>().karenBoosted = true;
-                //Speed up other...
-                other.GetComponent<CustomerController>().speed += 5;
+                karenBoosted = true;
+                speed *= 1.5f;
+            }else if (!ceoBoosted && other.GetComponent<CustomerController>().type == CustomerType.CEO)
+            {
+                ceoBoosted = true;
             }
         }
     }
@@ -146,9 +167,17 @@ public class CustomerController : MonoBehaviour
     }
     void SelectNextMoveTarget()
     {
+        //new code attempt
+        //if(goingToCenter)
+        //{
+        //    //reached center continue onward
+        //    this.moveTarget = this.fromTarget;
+        //}else
+        //end new code attempt
         if (goingToNextAisle)
         {
             goingToNextAisle = false;
+            //this.fromTarget = this.moveTarget; //new 
             //at next aisle now go to other side
             GameObject currentAisleObject = null;
             currentAisleObject = gameController.aisles.Find((a) =>
@@ -183,14 +212,25 @@ public class CustomerController : MonoBehaviour
                     return a.GetComponent<AisleController>().aisleNumber == currentAisle && a.GetComponent<AisleController>().isActive;
                 });
             }
+            GameObject holdTarget = this.moveTarget; // ? 
             if (currentAisleObject != null)
             {
                 this.moveTarget = currentAisleObject.GetComponent<AisleController>().getClosestSide(transform.position);
+                //new code attempt
+                //if (Vector3.Distance(transform.position, moveTarget.transform.position) > 31.5f)
+                //{// longer than an aisle
+                //    goingToCenter = true;
+                //    holdTarget = this.moveTarget;
+                //    this.moveTarget = this.fromTarget;
+                //    this.fromTarget = holdTarget;
+                //}
+                ////end new code attempt
             }
             else
             {
                 this.moveTarget = GameObject.FindWithTag("Manager");
             }
+            
         }
     }
 }
