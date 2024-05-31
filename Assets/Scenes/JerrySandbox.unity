@@ -1246,6 +1246,10 @@ PrefabInstance:
       propertyPath: aisles.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
+      propertyPath: isMouseCameraPanEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4939731108451418021, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16

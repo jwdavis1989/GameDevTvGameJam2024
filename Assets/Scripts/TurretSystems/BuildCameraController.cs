@@ -9,12 +9,12 @@ public class BuildCamera : MonoBehaviour
     public float scrollSpeed = 5f;
     public float minZoomY = 2f;
     public float maxZoomY = 30f;
-    public bool isMouseCameraPanEnabled = true;
+    private bool isMouseCameraPanEnabled = true;
     private bool isMovementEnabled = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        isMouseCameraPanEnabled = GameController.instance.isMouseCameraPanEnabled;
     }
 
     // Update is called once per frame
