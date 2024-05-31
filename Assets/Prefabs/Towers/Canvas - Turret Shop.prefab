@@ -1541,59 +1541,49 @@ MonoBehaviour:
   - prefab: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
     cost: 150
     name: Toaster
-    hotkey: 1
     isUnlocked: 1
   - prefab: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
     cost: 250
     name: Console
-    hotkey: 2
     isUnlocked: 1
   - prefab: {fileID: 2830675126490910847, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
     cost: 200
     name: Lawnmower
-    hotkey: 3
     isUnlocked: 1
-  - prefab: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
-    cost: 200
-    name: Lawnmower
-    hotkey: 4
+  - prefab: {fileID: 6537426774496652831, guid: 1ace154b644ca7d49976197951ad7224, type: 3}
+    cost: 100
+    name: Cassette Player
     isUnlocked: 1
   currentTurretsList: []
   toasterTurret:
     prefab: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
     cost: 150
     name: Toaster
-    hotkey: 1
     isUnlocked: 1
   consoleTurret:
     prefab: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
     cost: 250
     name: Console
-    hotkey: 2
     isUnlocked: 1
   lawnMowerTurret:
     prefab: {fileID: 2830675126490910847, guid: 4705da6f5d8b4ce4d94cd977a10e104c, type: 3}
     cost: 200
     name: Lawnmower
-    hotkey: 3
     isUnlocked: 1
   cassetteTurret:
-    prefab: {fileID: 0}
-    cost: 150
-    name: ADD NAME HERE
-    hotkey: NUMBER KEY GOES HERE
+    prefab: {fileID: 6537426774496652831, guid: 1ace154b644ca7d49976197951ad7224, type: 3}
+    cost: 100
+    name: Cassette\nPlayer
     isUnlocked: 1
   microwaveTurret:
     prefab: {fileID: 0}
     cost: 150
     name: ADD NAME HERE
-    hotkey: NUMBER KEY GOES HERE
     isUnlocked: 1
   generatorTurret:
     prefab: {fileID: 0}
     cost: 150
     name: ADD NAME HERE
-    hotkey: NUMBER KEY GOES HERE
     isUnlocked: 1
 --- !u!1 &6097332491477799426
 GameObject:
@@ -2542,7 +2532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $200
+  m_text: $100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40d208491e91bde49b4361cb11266ad1, type: 2}
   m_sharedMaterial: {fileID: -3119066507125720023, guid: 40d208491e91bde49b4361cb11266ad1, type: 2}
@@ -2621,11 +2611,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_text
-      value: TEST
+      value: 'Cassette
+
+        Player'
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSize
-      value: 9.5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontAsset
@@ -2633,7 +2625,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 40d208491e91bde49b4361cb11266ad1, type: 2}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSizeMax
-      value: 9.5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_sharedMaterial
@@ -2673,23 +2665,23 @@ PrefabInstance:
       objectReference: {fileID: 6818595911352517887}
     - target: {fileID: 3281696266579556049, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectConsoleTurret
+      value: SelectCassettePlayerTurret
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -15
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 7.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6018255552030410566, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_Name
