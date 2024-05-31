@@ -17,6 +17,11 @@ public class GameController : MonoBehaviour
     public int maxManagerWriteUps = 10;
     public static int money;
     public int startingMoney = 500;
+
+    [Header("Tower Base Attributes")]
+    public float damage = 50.0f;
+    public float range = 5f;
+    public float attackSpeed = 1.0f;
     [Header("Options Menu Settings")]
     public bool isTurretFireSoundOn = true;
     public bool isBackgroundMusicOn = true;

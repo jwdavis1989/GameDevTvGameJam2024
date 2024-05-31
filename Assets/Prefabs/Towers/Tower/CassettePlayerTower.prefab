@@ -185,9 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddd8047079445d49a8a704f86f934f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 12
-  range: 5.5
-  attackSpeed: 3
+  damageMultiplier: 0.24
+  rangeMultiplier: 1.1
+  attackSpeedMultiplier: 3
   turnSpeed: 10
   enemyTag: Customer
   bulletPrefab: {fileID: 5833322403008939426, guid: 680783a2dbc1d9140939ba7402469da4, type: 3}

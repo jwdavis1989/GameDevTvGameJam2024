@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
-  range: 5
+  range: 10
   attackSpeed: 1
   turnSpeed: 10
   enemyTag: Customer
