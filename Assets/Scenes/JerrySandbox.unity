@@ -4059,6 +4059,10 @@ PrefabInstance:
       propertyPath: turrets.Array.data[3].name
       value: Cassette<br>Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[2].isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7020348825990535112, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

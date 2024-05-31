@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ccb62e2530db4634c8005690eae795a0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97c5329ad44759e4ca3b058ffdb73d9e, type: 2}
     - target: {fileID: 919132149155446097, guid: ccb62e2530db4634c8005690eae795a0, type: 3}
       propertyPath: m_Name
       value: tapeplayer
