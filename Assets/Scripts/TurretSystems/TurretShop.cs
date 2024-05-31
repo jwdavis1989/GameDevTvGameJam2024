@@ -49,6 +49,12 @@ public class TurretShop : MonoBehaviour
         buildManager.SelectTurretToBuild(lawnMowerTurret);
     }
 
+    public void SelectCassettePlayerTurret()
+    {
+        Debug.Log("Cassette Player Turret Selected.");
+        buildManager.SelectTurretToBuild(cassetteTurret);
+    }
+
     public void resetTowerButtons() {
         int i = 0;
         foreach (TurretBluePrint turretBluePrint in turrets) {
