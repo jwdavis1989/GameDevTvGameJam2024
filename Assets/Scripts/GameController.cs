@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     [Header("Options Menu Settings")]
     public bool isTurretFireSoundOn = true;
     public bool isBackgroundMusicOn = true;
+    public bool isDeathSoundOn = true;
 
     void Awake() {
         if (instance) {

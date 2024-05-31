@@ -8,6 +8,7 @@ public class SpawnController : MonoBehaviour
     public GameObject gameControllerObject;
     public List<GameObject> customerTypes = new List<GameObject>();
     private Vector3 spawnLocation;
+    public int waveNumber = 0;
     // Start is called before the first frame update
     void Start()
     {
