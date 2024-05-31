@@ -49,6 +49,12 @@ public class TurretShop : MonoBehaviour
         buildManager.SelectTurretToBuild(lawnMowerTurret);
     }
 
+    public void SelectCassettePlayerTurret()
+    {
+        Debug.Log("Cassette Player Turret Selected.");
+        buildManager.SelectTurretToBuild(cassetteTurret);
+    }
+
     public void resetTowerButtons() {
         int i = 0;
         foreach (TurretBluePrint turretBluePrint in turrets) {
@@ -67,7 +73,15 @@ public class TurretShop : MonoBehaviour
                 currentTurretsList.Add(turrets[i]);
                 verifiedTowers++;
                 transform.GetChild(i).gameObject.SetActive(true);
-                transform.GetChild(i).transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = (verifiedTowers).ToString();
+                
+                //Set Hotkey
+                transform.GetChild(i).transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>().text = (verifiedTowers).ToString();
+
+                //Set Name
+                transform.GetChild(i).transform.GetChild(4).GetComponent<TMPro.TextMeshProUGUI>().text = turrets[i].name;
+
+                //Set Price
+                transform.GetChild(i).transform.GetChild(6).GetComponent<TMPro.TextMeshProUGUI>().text = "$" + turrets[i].cost;
             }
             i++;
         }
