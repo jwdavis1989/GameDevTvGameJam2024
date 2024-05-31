@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public bool isTurretFireSoundOn = true;
     public bool isBackgroundMusicOn = true;
     public bool isMouseCameraPanEnabled = true;
+    public float globalVolume = 1f;
 
     void Awake() {
         if (instance) {
