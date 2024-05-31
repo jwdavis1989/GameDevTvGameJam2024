@@ -1633,6 +1633,10 @@ PrefabInstance:
       propertyPath: turrets.Array.data[5].name
       value: Microwave
       objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[4].isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7000150179376302461, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_fontSize
       value: 10.8
