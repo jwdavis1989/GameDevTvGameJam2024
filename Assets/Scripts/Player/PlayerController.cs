@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private float centerY = 1.0f;
     private bool groundedPlayer;
     private bool canAttack = true;
     private bool isCurrentlyAttacking = false;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
+        controller.center = new Vector3(0, centerY, 0);
     }
 
     void Update()
