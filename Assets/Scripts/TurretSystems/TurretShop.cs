@@ -1,85 +1,86 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class TurretShop : MonoBehaviour
 {
     BuildManager buildManager;
     public GameObject buildButtonPrefab;
     public TurretBluePrint[] turrets;
+    public List<TurretBluePrint> currentTurretsList = new List<TurretBluePrint>();
     public TurretBluePrint toasterTurret;
     public TurretBluePrint consoleTurret;
     public TurretBluePrint lawnMowerTurret;
     public TurretBluePrint cassetteTurret;
     public TurretBluePrint microwaveTurret;
     public TurretBluePrint generatorTurret;
+    private int verifiedTowers = 0;
     // Start is called before the first frame update
     void Start()
     {
         buildManager = BuildManager.instance;
-        populateTurretBuyButtons();
+        //populateTurretBuyButtons();
+        resetTowerButtons();
+        verifyTowerUnlocks();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("1"))
-        {
-            Debug.Log("Toaster Turret Selected.");
-            buildManager.SelectTurretToBuild(toasterTurret);
-        }
 
-        if (Input.GetKeyDown("2"))
-        {
-            Debug.Log("Console Turret Selected.");
-            buildManager.SelectTurretToBuild(consoleTurret);
-        }
+        checkTowerHotkeys();
     }
 
-    public void populateTurretBuyButtons() {
+    public void SelectToasterTurret()
+    {
+        Debug.Log("Toaster Turret Selected.");
+        buildManager.SelectTurretToBuild(toasterTurret);
+    }
+
+    public void SelectConsoleTurret()
+    {
+        Debug.Log("Console Turret Selected.");
+        buildManager.SelectTurretToBuild(consoleTurret);
+    }
+
+    public void SelectLawnmowerTurret()
+    {
+        Debug.Log("Lawnmower Turret Selected.");
+        buildManager.SelectTurretToBuild(lawnMowerTurret);
+    }
+
+    public void resetTowerButtons() {
         int i = 0;
-        int index = 0;
         foreach (TurretBluePrint turretBluePrint in turrets) {
-            //Instantiate Child Button
-            GameObject currentButton = Instantiate(buildButtonPrefab, transform.position, Quaternion.identity);
-            currentButton.transform.parent = transform;
-            currentButton.GetComponent<Button>().onClick.AddListener( () => SelectTower(index++) );
-            Debug.Log("Button Created with Index: " + i);
-            
-            //Set Button Fields
-            //Hotkey
-            currentButton.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = (i + 1).ToString();
+            transform.GetChild(i).gameObject.SetActive(false);
+            i++;
+        }
+        currentTurretsList.Clear();
+    }
 
-            //Turret Name
-            currentButton.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>().text = turretBluePrint.name;
-
-            //Cost
-            currentButton.transform.GetChild(5).GetComponent<TMPro.TextMeshProUGUI>().text = "$" + turretBluePrint.cost.ToString();
-
+    public void verifyTowerUnlocks() {
+        int i = 0;
+        verifiedTowers = 0;
+        foreach (TurretBluePrint turretBluePrint in turrets) {
+            if (turretBluePrint.isUnlocked) {
+                //currentTurretsList[verifiedTowers] = turrets[i];
+                currentTurretsList.Add(turrets[i]);
+                verifiedTowers++;
+                transform.GetChild(i).gameObject.SetActive(true);
+                transform.GetChild(i).transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = (verifiedTowers).ToString();
+            }
             i++;
         }
     }
 
-    public void resetTurretBuyButtons() {
-        //Remove all button children
-        
-    }
-
-    // public void SelectToasterTurret() {
-    //     Debug.Log("Toaster Turret Selected.");
-    //     buildManager.SelectTurretToBuild(toasterTurret);
-    // }
-
-    // public void SelectConsoleTurret() {
-    //     Debug.Log("Console Turret Selected.");
-    //     buildManager.SelectTurretToBuild(consoleTurret);
-    // }
-
-
-    public void SelectTower(int index) {
-        // turrets[0]
-        // buildManager.SelectTurretToBuild(turrets[0])
-        // transform.GetChild()currentButton.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text
-        Debug.Log("Attempted Index: turrets[" + index + "]");
-        buildManager.SelectTurretToBuild(turrets[index]);
+    public void checkTowerHotkeys() {
+        int i = 0;
+        foreach (TurretBluePrint turretBluePrint in currentTurretsList) {
+            if (Input.GetKeyDown((i + 1).ToString())) {
+                Debug.Log("Turret Selected: " + i);
+                buildManager.SelectTurretToBuild(currentTurretsList[i]);
+            }
+            i++;
+        }
     }
 }

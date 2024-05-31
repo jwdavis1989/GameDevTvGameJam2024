@@ -9,5 +9,6 @@ public class TurretBluePrint
     public GameObject prefab;
     public int cost = 150;
     public string name = "ADD NAME HERE";
-    public string hotkey = "NUMBER KEY GOES HERE";
+    //public string hotkey = "NUMBER KEY GOES HERE";
+    public bool isUnlocked = true;
 }
