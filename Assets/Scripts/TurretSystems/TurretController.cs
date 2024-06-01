@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
-    [Header("Attributes")]
-    public float damage = 50.0f;
-    public float range = 5f;
-    public float attackSpeed = 1.0f;
+    [Header("Attributes - 1.0 = 100%")]
+    public float damageMultiplier = 1f;
+    public float rangeMultiplier = 1f;
+    public float attackSpeedMultiplier = 1f;
+    private float damage = 50.0f;
+    private float range = 5f;
+    private float attackSpeed = 1.0f;
     public float turnSpeed = 10f;
     private float fireCountdown = 0f;
     private Transform target;
@@ -21,9 +24,13 @@ public class TurretController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        //Initializes Turret Attributes based on global baselines
+        initializeAttributes();
+
         //Called every 0.5 seconds
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         fireSound = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -46,6 +53,11 @@ public class TurretController : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
+    void initializeAttributes() {
+        damage = GameController.instance.damage * damageMultiplier;
+        range = GameController.instance.range * rangeMultiplier;
+        attackSpeed = GameController.instance.attackSpeed * attackSpeedMultiplier;
+    }
     void Shoot() {
         GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         BulletController bullet = bulletGameObject.GetComponent<BulletController>();
