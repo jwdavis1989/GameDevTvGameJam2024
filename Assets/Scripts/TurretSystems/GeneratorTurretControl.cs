@@ -8,6 +8,7 @@ public class GeneratorTurretControl : MonoBehaviour
     public float rangeMultiplier = 1f;
     public float tickDelayInSeconds = 3f;
     private float radius = 5f;
+    private float towerSellbackMultiplier;
 
     [Header("Unity Setup Fields")]
     public string targetTag = "Turret";
@@ -35,6 +36,7 @@ public class GeneratorTurretControl : MonoBehaviour
 
     void initializeAttributes() {
         radius = GameController.instance.range * rangeMultiplier;
+        towerSellbackMultiplier = GameController.instance.towerSellbackMultiplier;
     }
 
     void ApplyBuff() {

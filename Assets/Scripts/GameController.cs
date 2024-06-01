@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
     public float range = 5f;
     public float attackSpeed = 1.0f;
     public float generatorBuffMultiplier = 1.25f;
+    public float towerSellbackMultiplier = 0.5f;
+
     [Header("Options Menu Settings")]
     public bool isTurretFireSoundOn = true;
     public bool isBackgroundMusicOn = true;

@@ -13,6 +13,7 @@ public class MicrowaveTurretController : MonoBehaviour
     private float radius = 5f;
     private float attackSpeed = 2.0f;
     private float generatorBuffMultiplier = 1.25f;
+    private float towerSellbackMultiplier;
     public bool IsgeneratorBuffed = false;
     private float fireCountdown = 0f;
 
@@ -54,6 +55,7 @@ public class MicrowaveTurretController : MonoBehaviour
         radius = GameController.instance.range * rangeMultiplier;
         attackSpeed = GameController.instance.attackSpeed * attackSpeedMultiplier;
         generatorBuffMultiplier = GameController.instance.generatorBuffMultiplier;
+        towerSellbackMultiplier = GameController.instance.towerSellbackMultiplier;
     }
     void PulseDamage() {
         //Handle Generator range buff

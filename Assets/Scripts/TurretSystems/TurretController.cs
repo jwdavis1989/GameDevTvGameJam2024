@@ -12,6 +12,7 @@ public class TurretController : MonoBehaviour
     private float range = 5f;
     private float attackSpeed = 1.0f;
     private float generatorBuffMultiplier = 1.25f;
+    private float towerSellbackMultiplier;
     public bool IsgeneratorBuffed = false;
     public float turnSpeed = 10f;
     private float fireCountdown = 0f;
@@ -66,6 +67,7 @@ public class TurretController : MonoBehaviour
         range = GameController.instance.range * rangeMultiplier;
         attackSpeed = GameController.instance.attackSpeed * attackSpeedMultiplier;
         generatorBuffMultiplier = GameController.instance.generatorBuffMultiplier;
+        towerSellbackMultiplier = GameController.instance.towerSellbackMultiplier;
     }
     void Shoot() {
         GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
