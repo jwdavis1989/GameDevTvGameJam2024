@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 623730746377944921}
-  - component: {fileID: 235947743259708460}
+  - component: {fileID: 2804600836451921178}
   - component: {fileID: 6440885949070070183}
   m_Layer: 0
   m_Name: MicrowaveTurret
@@ -279,7 +279,7 @@ Transform:
   - {fileID: 3301831120723339415}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &235947743259708460
+--- !u!114 &2804600836451921178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,17 +288,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5092448065109166662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ddd8047079445d49a8a704f86f934f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 736317a79f74f2840bac14da3820087a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMultiplier: 0.2
+  damageMultiplier: 0.4
   rangeMultiplier: 1.25
   attackSpeedMultiplier: 1
-  turnSpeed: 30
   enemyTag: Customer
-  bulletPrefab: {fileID: 9065721526257707689, guid: 66edb48419b2c3545bb6b991e8b5ca75, type: 3}
-  firePoint: {fileID: 1339855714052856493}
-  partToRotate: {fileID: 3301831120723339415}
+  onHitEffectPrefab: {fileID: 0}
 --- !u!82 &6440885949070070183
 AudioSource:
   m_ObjectHideFlags: 0

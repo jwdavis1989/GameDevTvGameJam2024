@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class MicrowaveTurretController : MonoBehaviour
 {
-[Header("Attributes")]
-    public float damage = 10.0f;
-    public float radius = 5f;
-    public float attackSpeed = 2.0f;
+    [Header("Attributes - 1.0 = 100%")]
+    public float damageMultiplier = 1f;
+    public float rangeMultiplier = 1f;
+    public float attackSpeedMultiplier = 1f;
+    private float damage = 10.0f;
+    private float radius = 5f;
+    private float attackSpeed = 2.0f;
     private float fireCountdown = 0f;
     private Transform[] targets;
     private Transform target;
@@ -19,6 +22,9 @@ public class MicrowaveTurretController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        //Initializes Turret Attributes based on global baselines
+        initializeAttributes();
+
         //Called every 0.5 seconds
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         auraSound = GetComponent<AudioSource>();
@@ -38,6 +44,11 @@ public class MicrowaveTurretController : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
+    void initializeAttributes() {
+        damage = GameController.instance.damage * damageMultiplier;
+        radius = GameController.instance.range * rangeMultiplier;
+        attackSpeed = GameController.instance.attackSpeed * attackSpeedMultiplier;
+    }
     void Shoot() {
         GameObject onHitEffectGameObject = (GameObject)Instantiate(onHitEffectPrefab, target.position, target.rotation);
         BulletController bullet = onHitEffectGameObject.GetComponent<BulletController>();
