@@ -118,9 +118,10 @@ GameObject:
   - component: {fileID: 6532074174028202919}
   - component: {fileID: 6692055349404640189}
   - component: {fileID: 6794613571148214608}
+  - component: {fileID: 2715641996682131940}
   m_Layer: 0
   m_Name: ConsoleTower
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
   damageMultiplier: 2
   rangeMultiplier: 3
   attackSpeedMultiplier: 0.5
+  IsgeneratorBuffed: 0
   turnSpeed: 10
   enemyTag: Customer
   bulletPrefab: {fileID: 3771413308335390812, guid: 7d63b3b5e501b58469a92d9e9acd0266, type: 3}
@@ -260,6 +262,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &2715641996682131940
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3176364804184638528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3529272834895669810
 GameObject:
   m_ObjectHideFlags: 0

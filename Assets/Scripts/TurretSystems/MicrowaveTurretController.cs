@@ -13,10 +13,9 @@ public class MicrowaveTurretController : MonoBehaviour
     private float radius = 5f;
     private float attackSpeed = 2.0f;
     private float generatorBuffMultiplier = 1.25f;
-    private bool IsgeneratorBuffed = false;
+    public bool IsgeneratorBuffed = false;
     private float fireCountdown = 0f;
-    private Transform[] targets;
-    private Transform target;
+
     [Header("Unity Setup Fields")]
     public string enemyTag = "Customer";
     public ParticleSystem generatorBuffParticles;
@@ -68,7 +67,7 @@ public class MicrowaveTurretController : MonoBehaviour
         bool playSound = false;
         foreach (Collider hitEnemy in hitEnemies)
         {
-            if (hitEnemy.CompareTag("Customer"))
+            if (hitEnemy.CompareTag(enemyTag))
             {
                 //Turn on sound if it hits a customer
                 playSound = true;
@@ -94,6 +93,11 @@ public class MicrowaveTurretController : MonoBehaviour
     //     yield return new WaitForSeconds(attackSpeed * lightningPulseDurationModifier);
     //     lightningPulseParticles.SetActive(false);
     // }
+
+    void Sell() {
+        //TODO: Refund percentage of cost
+        Destroy(gameObject);
+    }
     
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;

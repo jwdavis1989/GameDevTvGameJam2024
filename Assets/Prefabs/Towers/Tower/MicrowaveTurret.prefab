@@ -254,9 +254,10 @@ GameObject:
   - component: {fileID: 623730746377944921}
   - component: {fileID: 2804600836451921178}
   - component: {fileID: 6440885949070070183}
+  - component: {fileID: 8936505295128060181}
   m_Layer: 0
   m_Name: MicrowaveTurret
-  m_TagString: Untagged
+  m_TagString: AoETurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,6 +297,7 @@ MonoBehaviour:
   rangeMultiplier: 1.25
   attackSpeedMultiplier: 1
   turnSpeed: 30
+  IsgeneratorBuffed: 0
   enemyTag: Customer
   generatorBuffParticles: {fileID: 2078039260306685131}
   onHitEffectPrefab: {fileID: 0}
@@ -396,6 +398,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &8936505295128060181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092448065109166662}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &845195115590282097
 PrefabInstance:
   m_ObjectHideFlags: 0

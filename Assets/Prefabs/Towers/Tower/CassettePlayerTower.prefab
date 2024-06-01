@@ -149,9 +149,10 @@ GameObject:
   - component: {fileID: 7869150028504405124}
   - component: {fileID: 3689981555142021635}
   - component: {fileID: 5059375512097507790}
+  - component: {fileID: 3626699477402029071}
   m_Layer: 0
   m_Name: CassettePlayerTower
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,6 +190,7 @@ MonoBehaviour:
   damageMultiplier: 0.36
   rangeMultiplier: 1.1
   attackSpeedMultiplier: 2
+  IsgeneratorBuffed: 0
   turnSpeed: 10
   enemyTag: Customer
   bulletPrefab: {fileID: 5833322403008939426, guid: 680783a2dbc1d9140939ba7402469da4, type: 3}
@@ -291,6 +293,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &3626699477402029071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537426774496652831}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8059584661147470270
 GameObject:
   m_ObjectHideFlags: 0

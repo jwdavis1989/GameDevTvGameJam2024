@@ -12,7 +12,7 @@ public class TurretController : MonoBehaviour
     private float range = 5f;
     private float attackSpeed = 1.0f;
     private float generatorBuffMultiplier = 1.25f;
-    private bool IsgeneratorBuffed = false;
+    public bool IsgeneratorBuffed = false;
     public float turnSpeed = 10f;
     private float fireCountdown = 0f;
     private Transform target;
@@ -106,6 +106,12 @@ public class TurretController : MonoBehaviour
             target = null;
         }
     }
+
+    void Sell() {
+        //TODO: Refund percentage of cost
+        Destroy(gameObject);
+    }
+
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
