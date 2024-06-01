@@ -55,6 +55,18 @@ public class TurretShop : MonoBehaviour
         buildManager.SelectTurretToBuild(cassetteTurret);
     }
 
+    public void SelectGeneratorTurret()
+    {
+        Debug.Log("Generator Turret Selected.");
+        buildManager.SelectTurretToBuild(generatorTurret);
+    }
+
+    public void SelectMicrowaveTurret()
+    {
+        Debug.Log("Microwave Turret Selected.");
+        buildManager.SelectTurretToBuild(microwaveTurret);
+    }
+
     public void resetTowerButtons() {
         int i = 0;
         foreach (TurretBluePrint turretBluePrint in turrets) {
