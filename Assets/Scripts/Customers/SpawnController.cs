@@ -9,6 +9,14 @@ public class SpawnController : MonoBehaviour
     public List<GameObject> customerTypes = new List<GameObject>();
     private Vector3 spawnLocation;
     public int waveNumber = 0;
+    public int[] adultSpawnRate = new[] { 15, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
+    public int[] rollerskateKidSpawnRate = new[] { 5, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
+    public int[] scooterRate = new[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
+    public int[] dadSpawnRate = new[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
+    public int[] momSpawnRate = new[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
+    public int[] toddlerSpawnRate = new[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
+    public int[] karenSpawnRate = new[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
+    public int[] ceoSpawnRate = new[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 };
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +30,11 @@ public class SpawnController : MonoBehaviour
     void Update()
     {
         
+    }
+    public void SpawnWave()
+    {
+        waveNumber++;
+
     }
     void SpawnCustomer()
     {
