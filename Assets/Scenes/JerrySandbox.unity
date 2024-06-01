@@ -1423,18 +1423,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1973142266518867944, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectGeneratorTurret
-      objectReference: {fileID: 0}
-    - target: {fileID: 3907466425872103282, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_fontSize
-      value: 10.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3907466425872103282, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 4117716733297258121, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1515,14 +1503,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4787876149548581822, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4787876149548581822, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 5229481382949267502, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1547,10 +1527,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5511729825366749671, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectMicrowaveTurret
-      objectReference: {fileID: 0}
     - target: {fileID: 6447104009311112724, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1574,22 +1550,6 @@ PrefabInstance:
     - target: {fileID: 6447104009311112724, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: turrets.Array.data[5].name
-      value: Microwave
-      objectReference: {fileID: 0}
-    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: turrets.Array.data[4].isUnlocked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000150179376302461, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_fontSize
-      value: 10.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000150179376302461, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8097346553893104149, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_Name
@@ -1618,18 +1578,6 @@ PrefabInstance:
     - target: {fileID: 8200089198122996809, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8530462679251458170, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_text
-      value: Lawnmower
-      objectReference: {fileID: 0}
-    - target: {fileID: 8530462679251458170, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_fontSize
-      value: 10.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8530462679251458170, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8702359667687700907, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchorMax.y
