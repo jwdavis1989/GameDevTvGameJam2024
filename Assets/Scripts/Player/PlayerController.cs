@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private Animator animator;
     private float centerY = 1.0f;
     private bool groundedPlayer;
     private bool canAttack = true;
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float sprintCooldown = 4.0f;
     private float jumpHeight = 2.0f;
     private float gravityValue = -9.81f;
-    
+
     [Header("Unity Set-up")]
     public GameObject attackHitBoxReference;
     public bool hasAttackDuration = false;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = gameObject.AddComponent<CharacterController>();
         controller.center = new Vector3(0, centerY, 0);
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
+            animator.SetBool("Jump", false);
         }
 
         //Sprint Movement
@@ -87,6 +90,11 @@ public class PlayerController : MonoBehaviour
         if (isSprinting)
         {
             currentSpeed = sprintSpeed;
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
         }
 
         //Normal Movement
@@ -98,12 +106,21 @@ public class PlayerController : MonoBehaviour
         if (move != Vector3.zero)
         {
             gameObject.transform.forward = move;
+            //walk
+            animator.SetBool("Walk", true);
+        }
+        else
+        {
+            //idle
+            animator.SetBool("Walk", false);
         }
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+            //jump
+            animator.SetBool("Jump", true);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
