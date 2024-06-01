@@ -12,6 +12,8 @@ public class MicrowaveTurretController : MonoBehaviour
     private float damage = 10.0f;
     private float radius = 5f;
     private float attackSpeed = 2.0f;
+    private float generatorBuffMultiplier = 1.25f;
+    private bool IsgeneratorBuffed = false;
     private float fireCountdown = 0f;
     private Transform[] targets;
     private Transform target;
@@ -28,13 +30,6 @@ public class MicrowaveTurretController : MonoBehaviour
     void Start() {
         //Initializes Turret Attributes based on global baselines
         initializeAttributes();
-
-        //Initialize Lightning Pulse Particle Effect
-        // lightningPulseParticles = transform.GetChild(0).GetComponent<GameObject>();
-        // lightningPulseParticles.SetActive(false);
-
-        //Called every 0.5 seconds
-        //InvokeRepeating("UpdateTarget", 0f, 0.5f);
         auraSound = GetComponent<AudioSource>();
     }
 
@@ -42,7 +37,12 @@ public class MicrowaveTurretController : MonoBehaviour
     void Update() {
         if (fireCountdown <= 0f) {
             PulseDamage();
-            fireCountdown = 1f/attackSpeed;
+            if (!IsgeneratorBuffed) {
+                fireCountdown = 1f/attackSpeed;
+            }
+            else {
+                fireCountdown = 1f/(attackSpeed * generatorBuffMultiplier);
+            }
         }
         partToRotate.transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed);
         fireCountdown -= Time.deltaTime;
@@ -52,13 +52,16 @@ public class MicrowaveTurretController : MonoBehaviour
         damage = GameController.instance.damage * damageMultiplier;
         radius = GameController.instance.range * rangeMultiplier;
         attackSpeed = GameController.instance.attackSpeed * attackSpeedMultiplier;
+        generatorBuffMultiplier = GameController.instance.generatorBuffMultiplier;
     }
     void PulseDamage() {
-        // lightningPulseParticles.SetActive(true);
-        // StartCoroutine(LightningPulseDuration());
+        //Handle Generator range buff
+        float adjustedRadius = radius;
+        if (IsgeneratorBuffed) {
+            adjustedRadius *= generatorBuffMultiplier;
+        }
 
-
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, radius);
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, adjustedRadius);
 
         bool playSound = false;
         foreach (Collider hitEnemy in hitEnemies)

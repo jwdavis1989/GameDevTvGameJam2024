@@ -11,6 +11,8 @@ public class TurretController : MonoBehaviour
     private float damage = 50.0f;
     private float range = 5f;
     private float attackSpeed = 1.0f;
+    private float generatorBuffMultiplier = 1.25f;
+    private bool IsgeneratorBuffed = false;
     public float turnSpeed = 10f;
     private float fireCountdown = 0f;
     private Transform target;
@@ -47,7 +49,12 @@ public class TurretController : MonoBehaviour
 
         if (fireCountdown <= 0f) {
             Shoot();
-            fireCountdown = 1f/attackSpeed;
+            if (!IsgeneratorBuffed) {
+                fireCountdown = 1f/attackSpeed;
+            }
+            else {
+                fireCountdown = 1f/(attackSpeed * generatorBuffMultiplier);
+            }
         }
 
         fireCountdown -= Time.deltaTime;
@@ -57,6 +64,7 @@ public class TurretController : MonoBehaviour
         damage = GameController.instance.damage * damageMultiplier;
         range = GameController.instance.range * rangeMultiplier;
         attackSpeed = GameController.instance.attackSpeed * attackSpeedMultiplier;
+        generatorBuffMultiplier = GameController.instance.generatorBuffMultiplier;
     }
     void Shoot() {
         GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -84,7 +92,13 @@ public class TurretController : MonoBehaviour
             }
         }
 
-        if (nearestEnemey && shortestDistance <= range) {
+        //Handle Generator range buff
+        float adjustedRange = range;
+        if (IsgeneratorBuffed) {
+            adjustedRange *= generatorBuffMultiplier;
+        }
+
+        if (nearestEnemey && shortestDistance <= adjustedRange) {
             target = nearestEnemey.transform;
         }
         else {

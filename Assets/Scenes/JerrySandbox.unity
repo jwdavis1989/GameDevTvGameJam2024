@@ -341,7 +341,7 @@ Transform:
   m_GameObject: {fileID: 492879271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.69, y: 4.55, z: -9.09}
+  m_LocalPosition: {x: -3.69, y: 4.55, z: -12.55}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1242,49 +1242,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: range
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1912437528}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: startingMoney
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: aisles.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: managerWriteUpText
       value: 
       objectReference: {fileID: 779919688}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: maxManagerWriteUps
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: aisles.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: aisles.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: aisles.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: aisles.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
-      propertyPath: isMouseCameraPanEnabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4939731108451418021, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16
