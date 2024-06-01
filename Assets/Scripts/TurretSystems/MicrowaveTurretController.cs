@@ -19,6 +19,7 @@ public class MicrowaveTurretController : MonoBehaviour
     private Transform target;
     [Header("Unity Setup Fields")]
     public string enemyTag = "Customer";
+    public ParticleSystem generatorBuffParticles;
     private float lightningPulseDurationModifier = 0.25f;
     //private GameObject lightningPulseParticles;
     public ParticleSystem onHitEffectPrefab;
@@ -31,6 +32,7 @@ public class MicrowaveTurretController : MonoBehaviour
         //Initializes Turret Attributes based on global baselines
         initializeAttributes();
         auraSound = GetComponent<AudioSource>();
+        generatorBuffParticles.Stop();
     }
 
     // Update is called once per frame

@@ -19,6 +19,7 @@ public class TurretController : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Customer";
     public GameObject bulletPrefab;
+    public ParticleSystem generatorBuffParticles;
     private AudioSource fireSound;
     public Transform firePoint;
     public Transform partToRotate;
@@ -32,7 +33,7 @@ public class TurretController : MonoBehaviour
         //Called every 0.5 seconds
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         fireSound = GetComponent<AudioSource>();
-
+        generatorBuffParticles.Stop();
     }
 
     // Update is called once per frame
