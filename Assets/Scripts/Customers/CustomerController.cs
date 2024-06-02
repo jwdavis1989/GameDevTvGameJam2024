@@ -32,7 +32,7 @@ public class CustomerController : MonoBehaviour
     private int currentAisle = 0;
     private bool goingToNextAisle = false;
     public bool karenBoosted = false;
-    public float karenSpeed = 12.5f;
+    private float karenSpeed = 6.25f;
     private AudioSource deathSound;
     private GameObject fromTarget;
     private bool goingToCenter = false;
@@ -71,6 +71,12 @@ public class CustomerController : MonoBehaviour
             if (type == CustomerType.CEO)
             {
                 gameController.ceoEffect = false;
+                gameController.GetComponent<AudioSource>().clip = gameController.audioClipList[0];
+                gameController.GetComponent<AudioSource>().Play();
+            }
+            if(type == CustomerType.KAREN)
+            {
+                
             }
             GameController.money += money;
             gameController.moneyText.text = "$"+GameController.money;
