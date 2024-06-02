@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
         UpdateClockTextDisplay(currentClockTime);
         buildMenu.SetActive(BuildMode);
         currentWaitTimeRemaining = waitTimeBetweenWaves;
-        StartCoroutine(WaitTimeBetweenWavesTimer());
+        StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
         UpdateWaitModeTimerText(currentWaitTimeRemaining);
         Cursor.lockState = CursorLockMode.Confined;
     }
@@ -182,7 +182,7 @@ public class GameController : MonoBehaviour
             CancelInvoke("CheckCustomersAllDead");
 
             //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
-            StartCoroutine(WaitTimeBetweenWavesTimer());
+            StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
 
             //Update Clock Text to next hour
             currentClockTime++;
@@ -194,13 +194,23 @@ public class GameController : MonoBehaviour
         }
     }
 
-    IEnumerator WaitTimeBetweenWavesTimer()
+    IEnumerator WaitTimeBetweenWavesTimer(float time)
     {
-        yield return new WaitForSeconds(waitTimeBetweenWaves);
+        yield return new WaitForSeconds(time);
         SetKillCustomersText();
         SpawnMode = true;
         BreakMode = false;
     }
 
+    public void SkipToSpawnWave() {
+        StopCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));
+        //StopAllCoroutines();
+        currentWaitTimeRemaining = 1f;
+        StartCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));
 
+        //Turn off Build Mode
+        buildMenu.SetActive(false);
+        BuildMode = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }
