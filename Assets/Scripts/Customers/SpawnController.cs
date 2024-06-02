@@ -15,15 +15,16 @@ public class SpawnController : MonoBehaviour
     public float spawnRate = 3.0f;
     private float spawnDelay = 1.0f;
     public int waveNumber = 0;
-    public int[] adultSpawnRate = new[] { 15, 13, 13, 15, 25, 30, 36, 40, 0, 15 };
-    public int[] rollerskateKidSpawnRate = new[] { 3, 5, 12, 10, 8, 8, 16, 10, 15, 15 };
-    public int[] scooterRate = new[] { 0, 4, 6, 10, 8, 12, 4, 10, 15, 15 };
-    public int[] karenSpawnRate = new[] { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 };
-    public int[] dadSpawnRate = new[] { 0, 0, 0, 2, 5, 12, 4, 10, 20, 20 };
-    public int[] momSpawnRate = new[] { 0, 0, 0, 2, 5, 2, 16, 10, 20, 20 };
-    public int[] toddlerSpawnRate = new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    public int[] ceoSpawnRate = new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
-    public int[][] waveSpawnRates;
+    private int[] adultSpawnRate = new[] { 10, 13, 13, 15, 25, 30, 36, 40, 0, 15 };
+    private int[] rollerskateKidSpawnRate = new[] { 3, 5, 12, 10, 8, 8, 16, 10, 15, 15 };
+    private int[] scooterRate = new[] { 0, 4, 6, 10, 8, 12, 4, 10, 15, 15 };
+    private int[] karenSpawnRate = new[] { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 };
+    private int[] dadSpawnRate = new[] { 0, 0, 0, 2, 5, 12, 4, 10, 20, 20 };
+    private int[] momSpawnRate = new[] { 0, 0, 0, 2, 5, 2, 16, 10, 20, 20 };
+    private int[] toddlerSpawnRate = new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    private int[] ceoSpawnRate = new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+    private int[] randomSpawnRate = new[] {0,0,3,8,12,12,12,16,20,25 }; private int RANDOM_INDEX = 8;
+    private int[][] waveSpawnRates;
     private System.Random rng = new System.Random();
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class SpawnController : MonoBehaviour
         spawnLocation = new Vector3(transform.position.x, transform.position.y, transform.position.z-1);
         InvokeRepeating("SpawnCustomer", spawnDelay, spawnRate);
 
-        waveSpawnRates = new int[customerTypes.Length][];
+        waveSpawnRates = new int[customerTypes.Length+1][];
         waveSpawnRates[((int)CustomerType.Adult)] = adultSpawnRate;
         waveSpawnRates[((int)CustomerType.KAREN)] = karenSpawnRate;
         waveSpawnRates[((int)CustomerType.Toddler)] = toddlerSpawnRate;
@@ -42,6 +43,7 @@ public class SpawnController : MonoBehaviour
         waveSpawnRates[((int)CustomerType.RollerskateKid)] = rollerskateKidSpawnRate;
         waveSpawnRates[((int)CustomerType.Mom)] = momSpawnRate;
         waveSpawnRates[((int)CustomerType.Dad)] = dadSpawnRate;
+        waveSpawnRates[RANDOM_INDEX] = randomSpawnRate;
         gameController.aisles[2].GetComponent<AisleController>().setInactive();
     }
 
@@ -50,11 +52,11 @@ public class SpawnController : MonoBehaviour
     {
         
     }
-    public void SpawnWave()
-    {
-        waveNumber++;
-
-    }
+    //public void WaveEnd()
+    //{
+    //    gameController.SpawnMode = false;
+    //    waveNumber++;
+    //}
     void SpawnCustomer()
     {
         if(!gameController.SpawnMode) {
@@ -66,19 +68,29 @@ public class SpawnController : MonoBehaviour
         while (!spawned && customersChecked < customerTypes.Length)
         {
             customersChecked++;
-            int customerTypeIndex = UnityEngine.Random.Range(0, spawnRatesCopy.Count);//pick random customer type
-            int[] indices = new int[] { 0, 1, 2, 3, 4, 5, 6, 7};
-            Shuffle(indices);
-            foreach (int i in indices)
+            //int customerTypeIndex = UnityEngine.Random.Range(0, spawnRatesCopy.Count);//pick random customer type
+            int[] customerTypeIndices = new int[] { 0, 1, 2, 3, 4, 5, 6, 7};
+            Shuffle(customerTypeIndices);
+            foreach (int i in customerTypeIndices)
             {
                 if (spawnRatesCopy[i][waveNumber] > 0)
                 {
-                    GameObject newCustomer = Instantiate(customerTypes[i], spawnLocation, customerTypes[i].transform.rotation);
+                    GameObject newCustomer;
+                    if(i == RANDOM_INDEX) //spawn random
+                    {
+                        int randomCustomerIndex = UnityEngine.Random.Range(1, spawnRatesCopy.Count - 1);//all customer types except KAREN and CEO
+                        newCustomer = Instantiate(customerTypes[randomCustomerIndex], spawnLocation, customerTypes[randomCustomerIndex].transform.rotation);
+                    }
+                    else
+                    {
+                        newCustomer = Instantiate(customerTypes[i], spawnLocation, customerTypes[i].transform.rotation);
+                    }
                     newCustomer.GetComponent<CustomerController>().spawn(gameController);
-
                     spawned = true;
                     //subtract this spawn from chart
-                    waveSpawnRates[(int)newCustomer.GetComponent<CustomerController>().type][waveNumber]--;
+                    waveSpawnRates[i][waveNumber]--;
+                    //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]); //astest
+                    //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
                     break;
                 }
             }
@@ -93,7 +105,12 @@ public class SpawnController : MonoBehaviour
         }
         if (!spawned)
         {
-            //Debug.Log("AdultSpawnRate:"+waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
+            //Debug.Log("waveEnd");
+            //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
+            //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
+            //WaveEnd();
+            gameController.EndWave(); waveNumber++;
+            //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
             //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
             //Debug.Log("not spawned... custChecked:" + customersChecked + "waveNumber:"+waveNumber);
         }

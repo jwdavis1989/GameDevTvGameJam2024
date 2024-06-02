@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public List<GameObject> aisles;
     public bool SpawnMode;
     public bool BuildMode;
+    public bool ceoEffect = false;
     public TextMeshProUGUI managerWriteUpText;
     public TextMeshProUGUI moneyText; 
     public static GameController instance;
@@ -77,11 +78,26 @@ public class GameController : MonoBehaviour
     }
 
     private void GameOver() {
-        Debug.Log("Game Over!");
+        //Debug.Log("Game Over!");
         //Add Game Over Screen Transition Here
     }
 
     public void ChangeGameMode() {
         //Ticket: |[P*] GameController ChangeGameMode() function|
+    }
+    public void EndWave()
+    {
+        SpawnMode = false;
+        InvokeRepeating("CheckCustomersAllDead", 1, 1);
+
+    }
+    private void CheckCustomersAllDead()
+    {
+        if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
+        {
+            //Debug.Log("Build Mode Started!!");
+            CancelInvoke("CheckCustomersAllDead");
+            BuildMode = true;
+        }
     }
 }
