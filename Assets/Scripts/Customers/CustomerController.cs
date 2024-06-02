@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,6 @@ public enum CustomerType
     RollerskateKid,
     Mom,
     Dad,
-    DisgruntledEmployee,
     CEO
 }
 public class CustomerController : MonoBehaviour 
@@ -31,11 +31,14 @@ public class CustomerController : MonoBehaviour
     public GameObject bodyParts;
     private int currentAisle = 0;
     private bool goingToNextAisle = false;
-    private bool karenBoosted = false;
+    public bool karenBoosted = false;
+    public float karenSpeed = 0;
     private bool ceoBoosted = false;
     private AudioSource deathSound;
     private GameObject fromTarget;
     private bool goingToCenter = false;
+    private const float AISLEDISTANCE = 26.0f;
+    private const float CENTERLINE = -0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,12 +86,37 @@ public class CustomerController : MonoBehaviour
             SelectNextMoveTarget();
         }
         Vector3 direction = moveTarget.transform.position - transform.position;
-        Vector3 newPosition = direction.normalized * speed * Time.deltaTime;
+        if (goingToCenter){
+            Vector3 center = new Vector3(CENTERLINE, transform.position.y, transform.position.z);
+            if(Vector3.Distance(center, transform.position) < 1.0f)
+            {
+                goingToCenter = false;
+                //direction = moveTarget.transform.position - transform.position;
+            }
+            else
+            {
+                direction = center - transform.position;
+            }
+        }
+        Vector3 newPosition;
+        if (karenBoosted)
+        {
+            newPosition = direction.normalized * karenSpeed * Time.deltaTime;
+        }
+        else
+        {
+            newPosition = direction.normalized * speed * Time.deltaTime;
+            newPosition = new Vector3(newPosition.x, 0, newPosition.z);
+        }
         transform.Translate(newPosition);
         //transform.forward = newPosition;
         if(bodyParts != null)
         {
             //ROTATION
+            if (goingToCenter)
+            {
+                bodyParts.transform.LookAt(new Vector3(CENTERLINE, transform.position.y, transform.position.z));
+            }else
             bodyParts.transform.LookAt(moveTarget.transform.position);//method4
             //method1
             //Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -111,7 +139,9 @@ public class CustomerController : MonoBehaviour
         currentAisle = 0;
         goingToNextAisle = false;
         this.gameController = gameController;
+        this.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         this.SelectNextMoveTarget();
+        Debug.Log(this.currentAisle + "ailse. ");//astest
     }
     public void toddlerSpawn(GameController gameController, int currentAisle, bool goingToNextAisle, GameObject moveTarget)
     {
@@ -131,7 +161,7 @@ public class CustomerController : MonoBehaviour
                 //Debug.Log("Collision Selecting next move"); 
             }else if (goingToCenter && other.GetComponent<AisleMarker>() != null && other.GetComponent<AisleMarker>().isActive())
             {
-                SelectNextMoveTarget();
+                //SelectNextMoveTarget();
             }
 
 
@@ -151,28 +181,21 @@ public class CustomerController : MonoBehaviour
         }
         else if (other.CompareTag("Customer"))
         {
-            if (!karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
-            {
-                karenBoosted = true;
-                speed *= 1.5f;
-            }else if (!ceoBoosted && other.GetComponent<CustomerController>().type == CustomerType.CEO)
-            {
-                ceoBoosted = true;
-            }
         }
     }
     public void setAisle(int aisle)
     {
-        currentAisle += aisle;
+        currentAisle = aisle;
     }
     void SelectNextMoveTarget()
     {
         //new code attempt
-        //if(goingToCenter)
-        //{
-        //    //reached center continue onward
-        //    this.moveTarget = this.fromTarget;
-        //}else
+        if (goingToCenter)
+        {
+            //reached center continue onward
+            this.moveTarget = this.fromTarget;
+        }
+        else
         //end new code attempt
         if (goingToNextAisle)
         {
@@ -191,6 +214,10 @@ public class CustomerController : MonoBehaviour
             else
             {
                 this.moveTarget = GameObject.FindWithTag("Manager");
+                if (Vector3.Distance(transform.position, moveTarget.transform.position) > AISLEDISTANCE)
+                {// longer than an aisle
+                    goingToCenter = true;
+                }
             }
             
         }
@@ -217,18 +244,22 @@ public class CustomerController : MonoBehaviour
             {
                 this.moveTarget = currentAisleObject.GetComponent<AisleController>().getClosestSide(transform.position);
                 //new code attempt
-                //if (Vector3.Distance(transform.position, moveTarget.transform.position) > 31.5f)
-                //{// longer than an aisle
-                //    goingToCenter = true;
-                //    holdTarget = this.moveTarget;
-                //    this.moveTarget = this.fromTarget;
-                //    this.fromTarget = holdTarget;
-                //}
-                ////end new code attempt
+                if (Vector3.Distance(transform.position, moveTarget.transform.position) > AISLEDISTANCE)
+                {// longer than an aisle
+                    goingToCenter = true;
+                    //holdTarget = this.moveTarget;
+                    //this.moveTarget = this.fromTarget;
+                    //this.fromTarget = holdTarget;
+                }
+                //end new code attempt
             }
             else
             {
                 this.moveTarget = GameObject.FindWithTag("Manager");
+                if (Vector3.Distance(transform.position, moveTarget.transform.position) > AISLEDISTANCE)
+                {// longer than an aisle
+                    goingToCenter = true;
+                }
             }
             
         }
