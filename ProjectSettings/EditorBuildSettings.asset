@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 03f9625e2b8065e459634b64d6ca2328
+  - enabled: 1
+    path: Assets/Scenes/Boingo Goes Shopping.unity
+    guid: 24374fd696b5019449393c8872af79aa
   m_configObjects: {}
