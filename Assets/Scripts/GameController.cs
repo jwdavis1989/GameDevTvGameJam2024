@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI managerWriteUpText;
     public TextMeshProUGUI moneyText; 
     public static GameController instance;
+    public GameObject buildMenu;
 
     [Header("Player Global Attributes")]
     public int managerWriteUps = 0;
@@ -32,6 +33,10 @@ public class GameController : MonoBehaviour
     public bool isMouseCameraPanEnabled = true;
     public float globalVolume = 1f;
 
+    [Header("Cameras")]
+    public GameObject buildCamera;
+    public GameObject walkCamera;
+
     void Awake() {
         if (instance) {
             return;
@@ -46,7 +51,7 @@ public class GameController : MonoBehaviour
         managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / " + maxManagerWriteUps;
         money = startingMoney;
         UpdateMoneyTextDisplay();
-        //Cursor.lockState = CursorLockMode.Locked;
+        buildMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,6 +59,9 @@ public class GameController : MonoBehaviour
     {
         if (managerWriteUps >= maxManagerWriteUps) {
             GameOver();
+        }
+        else {
+            HandleToggleBuildMenu();
         }
         //if (!ceoBoosted && other.GetComponent<CustomerController>().type == CustomerType.CEO)
         //{
@@ -82,7 +90,46 @@ public class GameController : MonoBehaviour
         //Add Game Over Screen Transition Here
     }
 
-    public void ChangeGameMode() {
+    public void ChangeGameMode(string mode) {
         //Ticket: |[P*] GameController ChangeGameMode() function|
+        //if (mode == "")
+    }
+
+    public void HandleToggleBuildMenu() {
+        //Check hotkeys
+        if (Input.GetKeyDown("q") || Input.GetKeyDown("e") || Input.GetKeyDown("f") || Input.GetKeyDown(KeyCode.Tab)) {
+            if (BuildMode) {
+                //1. Lock Mouse
+                Cursor.lockState = CursorLockMode.Locked;
+
+                //2. Enable Main Camera
+                //walkCamera.SetActive(true);
+
+                //3. Disable Build Camera
+                //buildCamera.SetActive(false);
+                
+                //4. Disable Build Menu
+                buildMenu.SetActive(false);
+
+                //5. Set Build Mode to false
+                BuildMode = false;
+            }
+            else {
+                //1. Unlock Mouse
+                Cursor.lockState = CursorLockMode.Confined;
+
+                //2. Disable Main Camera
+                //walkCamera.SetActive(false);
+
+                //3. Enable Build Camera
+                //buildCamera.SetActive(true);
+
+                //4. Enable Build Menu
+                buildMenu.SetActive(true);
+
+                //5. Set Build Mode to true
+                BuildMode = true;
+            }
+        }
     }
 }

@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &32447152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6612446566835980386, guid: bb1f80f2d3755ef4884f07d73b5848e1, type: 3}
+  m_PrefabInstance: {fileID: 169180875}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &169180875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1296,6 +1301,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5599840096703886721, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717832034269334454, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6447104009311112724, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1371,6 +1384,10 @@ PrefabInstance:
     - target: {fileID: 8702359667687700907, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114992998286264134, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1726,6 +1743,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e831cdef91e844a8f097808756d72b, type: 3}
+--- !u!1 &1317265437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5599840096703886721, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+  m_PrefabInstance: {fileID: 995013806}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1319931653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,9 +2126,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
+      propertyPath: buildMenu
+      value: 
+      objectReference: {fileID: 1317265437}
+    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1538622469}
+    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
+      propertyPath: walkCamera
+      value: 
+      objectReference: {fileID: 1348030458}
+    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
+      propertyPath: buildCamera
+      value: 
+      objectReference: {fileID: 32447152}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: aisles.Array.size
       value: 6
