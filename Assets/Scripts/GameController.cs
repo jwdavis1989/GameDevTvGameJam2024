@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI moneyText; 
     public TextMeshProUGUI clockText;
     public TextMeshProUGUI waitModeTimerText;
+    public GameObject readyButton;
     public static GameController instance;
     public GameObject buildMenu;
     private int currentClockTime = 7;
@@ -108,12 +109,15 @@ public class GameController : MonoBehaviour
     }
 
     public void UpdateClockTextDisplay(int hoursDigitInMilitaryTime) {
-        int hoursMilitaryTime = hoursDigitInMilitaryTime;
-
-        //WORK ON THIS YOU PIECE OF SHIT GOD DAMN HOW COULD YOU FORGET!?
-
-        //if (hour)
-        clockText.text = hoursMilitaryTime + ":00";
+        if (hoursDigitInMilitaryTime > 12) {
+            clockText.text = (hoursDigitInMilitaryTime - 12) + ":00pm";
+        }
+        else if (hoursDigitInMilitaryTime == 12){
+            clockText.text = (hoursDigitInMilitaryTime) + ":00pm";
+        }
+        else {
+            clockText.text = (hoursDigitInMilitaryTime) + ":00am";
+        }
     }
 
     public void UpdateWaitModeTimerText(float newTimeRemaining) {
@@ -201,6 +205,7 @@ public class GameController : MonoBehaviour
             currentWaitTimeRemaining = waitTimeBetweenWaves;
             UpdateWaitModeTimerText(currentWaitTimeRemaining);
             BreakMode = true;
+            readyButton.SetActive(true);
         }
     }
 
@@ -210,6 +215,7 @@ public class GameController : MonoBehaviour
         SetKillCustomersText();
         SpawnMode = true;
         BreakMode = false;
+        readyButton.SetActive(false);
     }
 
     public void SkipToSpawnWave() {
@@ -222,5 +228,6 @@ public class GameController : MonoBehaviour
         buildMenu.SetActive(false);
         BuildMode = false;
         Cursor.lockState = CursorLockMode.Locked;
+        readyButton.SetActive(false);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17292504, g: 0.21610881, b: 0.29807755, a: 1}
+  m_IndirectSpecularColor: {r: 0.17292523, g: 0.2161091, b: 0.29807812, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1645,7 +1645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609276958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005042403, y: 0.96149826, z: -0.27419525, w: 0.017681787}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2230,6 +2230,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1726420532293725140, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726420532293725140, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726420532293725140, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1810693815596605724, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2729,7 +2741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158760736}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005651314, y: 0.95143294, z: -0.30730656, w: 0.017496685}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3351,6 +3363,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 32447152}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
+      propertyPath: readyButton
+      value: 
+      objectReference: {fileID: 1611370288}
+    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: aisles.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -3576,6 +3592,11 @@ MonoBehaviour:
 --- !u!224 &1543466366 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8039024023975622445, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
+  m_PrefabInstance: {fileID: 223511924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1611370288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6018255552030410566, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
   m_PrefabInstance: {fileID: 223511924}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1633713007
@@ -3980,7 +4001,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881276763}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0062593, y: 0.9401126, z: -0.3403678, w: 0.017288495}
+  m_LocalRotation: {x: 0.0062593035, y: 0.94011265, z: -0.3403678, w: 0.017288506}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
