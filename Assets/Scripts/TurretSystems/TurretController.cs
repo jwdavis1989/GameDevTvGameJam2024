@@ -11,12 +11,16 @@ public class TurretController : MonoBehaviour
     private float damage = 50.0f;
     private float range = 5f;
     private float attackSpeed = 1.0f;
+    private float generatorBuffMultiplier = 1.25f;
+    private float towerSellbackMultiplier;
+    public bool IsgeneratorBuffed = false;
     public float turnSpeed = 10f;
     private float fireCountdown = 0f;
     private Transform target;
     [Header("Unity Setup Fields")]
     public string enemyTag = "Customer";
     public GameObject bulletPrefab;
+    public ParticleSystem generatorBuffParticles;
     private AudioSource fireSound;
     public Transform firePoint;
     public Transform partToRotate;
@@ -30,7 +34,7 @@ public class TurretController : MonoBehaviour
         //Called every 0.5 seconds
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         fireSound = GetComponent<AudioSource>();
-
+        generatorBuffParticles.Stop();
     }
 
     // Update is called once per frame
@@ -47,7 +51,12 @@ public class TurretController : MonoBehaviour
 
         if (fireCountdown <= 0f) {
             Shoot();
-            fireCountdown = 1f/attackSpeed;
+            if (!IsgeneratorBuffed) {
+                fireCountdown = 1f/attackSpeed;
+            }
+            else {
+                fireCountdown = 1f/(attackSpeed * generatorBuffMultiplier);
+            }
         }
 
         fireCountdown -= Time.deltaTime;
@@ -57,6 +66,8 @@ public class TurretController : MonoBehaviour
         damage = GameController.instance.damage * damageMultiplier;
         range = GameController.instance.range * rangeMultiplier;
         attackSpeed = GameController.instance.attackSpeed * attackSpeedMultiplier;
+        generatorBuffMultiplier = GameController.instance.generatorBuffMultiplier;
+        towerSellbackMultiplier = GameController.instance.towerSellbackMultiplier;
     }
     void Shoot() {
         GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -84,13 +95,25 @@ public class TurretController : MonoBehaviour
             }
         }
 
-        if (nearestEnemey && shortestDistance <= range) {
+        //Handle Generator range buff
+        float adjustedRange = range;
+        if (IsgeneratorBuffed) {
+            adjustedRange *= generatorBuffMultiplier;
+        }
+
+        if (nearestEnemey && shortestDistance <= adjustedRange) {
             target = nearestEnemey.transform;
         }
         else {
             target = null;
         }
     }
+
+    void Sell() {
+        //TODO: Refund percentage of cost
+        Destroy(gameObject);
+    }
+
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);

@@ -48,23 +48,22 @@ MonoBehaviour:
   aisles:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   SpawnMode: 1
   BuildMode: 0
   managerWriteUpText: {fileID: 0}
+  moneyText: {fileID: 0}
   managerWriteUps: 0
-  startingMoney: 2
+  maxManagerWriteUps: 10
+  startingMoney: 700
+  damage: 50
+  range: 10
+  attackSpeed: 1
+  generatorBuffMultiplier: 1.25
+  isTurretFireSoundOn: 1
+  isBackgroundMusicOn: 1
+  isDeathSoundOn: 1
+  isMouseCameraPanEnabled: 0
+  globalVolume: 1
 --- !u!114 &7562516924131832831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,3 +78,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toasterTurretPrefab: {fileID: 1603515900921439573, guid: b40f8270bddcec5498b1f7d10b09c66e, type: 3}
   consoleTurretPrefab: {fileID: 3176364804184638528, guid: f5cfabee0747d944f893a5fe116faada, type: 3}
+  buildParticleEffect: {fileID: 0}
