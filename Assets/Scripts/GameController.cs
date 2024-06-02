@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour
     public bool BuildMode = true;
     private bool BreakMode = true;
     public bool ceoEffect = false;
+    private bool lastWave = false;
     public TextMeshProUGUI managerWriteUpText;
     public TextMeshProUGUI moneyText; 
     public TextMeshProUGUI clockText;
@@ -93,6 +95,7 @@ public class GameController : MonoBehaviour
         if(managerWriteUps >= maxManagerWriteUps)
         {
             managerWriteUpText.text = "Game Over!";
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
         }
         else
         {
@@ -168,8 +171,9 @@ public class GameController : MonoBehaviour
             }
         }
     }
-    public void EndWave()
+    public void EndWave(bool lastWave)
     {
+        this.lastWave = lastWave;
         SpawnMode = false;
         InvokeRepeating("CheckCustomersAllDead", 1, 1);
 
@@ -180,9 +184,15 @@ public class GameController : MonoBehaviour
         {
             //Debug.Log("Build Mode Started!!");
             CancelInvoke("CheckCustomersAllDead");
+            if (this.lastWave)
+            {
+                //do victory
+                SceneManager.LoadScene("Victory", LoadSceneMode.Single);
+                return;
+            }
 
-            //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
-            StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+                //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
+                StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
 
             //Update Clock Text to next hour
             currentClockTime++;

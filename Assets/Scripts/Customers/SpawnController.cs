@@ -112,7 +112,10 @@ public class SpawnController : MonoBehaviour
             //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
             //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
             //WaveEnd();
-            gameController.EndWave(); 
+            bool lastWave = false;
+            if(waveNumber == 9)
+                lastWave = true;
+            gameController.EndWave(lastWave); 
             waveNumber++;
             if(waveNumber < gameController.aisles.Count) {
                 gameController.aisles[waveNumber].GetComponent<AisleController>().setActive();
