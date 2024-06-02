@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public bool BuildMode;
     public TextMeshProUGUI managerWriteUpText;
     public TextMeshProUGUI moneyText; 
+    public TextMeshProUGUI clockText;
     public static GameController instance;
     public GameObject buildMenu;
 
@@ -51,6 +52,7 @@ public class GameController : MonoBehaviour
         managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / " + maxManagerWriteUps;
         money = startingMoney;
         UpdateMoneyTextDisplay();
+        UpdateClockTextDisplay(7, "am");
         buildMenu.SetActive(false);
     }
 
@@ -83,6 +85,10 @@ public class GameController : MonoBehaviour
 
     public void UpdateMoneyTextDisplay() {
         moneyText.text = "$" + money;
+    }
+
+    public void UpdateClockTextDisplay(int hoursDigit, string amOrPm) {
+        clockText.text = hoursDigit + ":00" + amOrPm;
     }
 
     private void GameOver() {
