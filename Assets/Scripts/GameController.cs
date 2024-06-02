@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     [Header("Player Global Attributes")]
     public int managerWriteUps = 0;
-    public int maxManagerWriteUps = 10;
+    public int maxManagerWriteUps = 5;
     public static int money;
     public int startingMoney = 500;
 
@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour
         managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / " + maxManagerWriteUps;
         money = startingMoney;
         UpdateMoneyTextDisplay();
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -62,13 +63,13 @@ public class GameController : MonoBehaviour
     public void addWriteUp()
     {
         managerWriteUps++;
-        if(managerWriteUps >= 5)
+        if(managerWriteUps >= maxManagerWriteUps)
         {
             managerWriteUpText.text = "Game Over!";
         }
         else
         {
-            managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / 5";
+            managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / " + maxManagerWriteUps;
         }
     }
 
