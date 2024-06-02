@@ -6,14 +6,19 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public List<GameObject> aisles;
-    public bool SpawnMode;
-    public bool BuildMode;
+    public bool SpawnMode = false;
+    public bool BuildMode = true;
+    private bool BreakMode = true;
     public bool ceoEffect = false;
     public TextMeshProUGUI managerWriteUpText;
     public TextMeshProUGUI moneyText; 
     public TextMeshProUGUI clockText;
+    public TextMeshProUGUI waitModeTimerText;
     public static GameController instance;
     public GameObject buildMenu;
+    private int currentClockTime = 7;
+    public float waitTimeBetweenWaves = 30f;
+    private float currentWaitTimeRemaining;
 
     [Header("Player Global Attributes")]
     public int managerWriteUps = 0;
@@ -53,8 +58,12 @@ public class GameController : MonoBehaviour
         managerWriteUpText.text = "Write-Ups\n" + managerWriteUps + " / " + maxManagerWriteUps;
         money = startingMoney;
         UpdateMoneyTextDisplay();
-        UpdateClockTextDisplay(7, "am");
-        buildMenu.SetActive(false);
+        UpdateClockTextDisplay(currentClockTime);
+        buildMenu.SetActive(BuildMode);
+        currentWaitTimeRemaining = waitTimeBetweenWaves;
+        StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+        UpdateWaitModeTimerText(currentWaitTimeRemaining);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame
@@ -65,11 +74,18 @@ public class GameController : MonoBehaviour
         }
         else {
             HandleToggleBuildMenu();
+
+            //Handle Timer Text
+            if (BreakMode) {
+                currentWaitTimeRemaining -= Time.deltaTime;
+                UpdateWaitModeTimerText(currentWaitTimeRemaining);
+            }
         }
         //if (!ceoBoosted && other.GetComponent<CustomerController>().type == CustomerType.CEO)
         //{
         //    ceoBoosted = true;
         //}
+        
     }
     public void addWriteUp()
     {
@@ -88,8 +104,21 @@ public class GameController : MonoBehaviour
         moneyText.text = "$" + money;
     }
 
-    public void UpdateClockTextDisplay(int hoursDigit, string amOrPm) {
-        clockText.text = hoursDigit + ":00" + amOrPm;
+    public void UpdateClockTextDisplay(int hoursDigitInMilitaryTime) {
+        int hoursMilitaryTime = hoursDigitInMilitaryTime;
+
+        //WORK ON THIS YOU PIECE OF SHIT GOD DAMN HOW COULD YOU FORGET!?
+
+        //if (hour)
+        clockText.text = hoursMilitaryTime + ":00";
+    }
+
+    public void UpdateWaitModeTimerText(float newTimeRemaining) {
+        waitModeTimerText.text = "Break Time!<br>Build Turrets to Live!<br>Break Remaining: " + Mathf.Round(newTimeRemaining);
+    }
+
+    public void SetKillCustomersText() {
+        waitModeTimerText.text = "Kill them before they report you to your manager!";
     }
 
     private void GameOver() {
@@ -151,7 +180,37 @@ public class GameController : MonoBehaviour
         {
             //Debug.Log("Build Mode Started!!");
             CancelInvoke("CheckCustomersAllDead");
-            BuildMode = true;
+
+            //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
+            StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+
+            //Update Clock Text to next hour
+            currentClockTime++;
+            UpdateClockTextDisplay(currentClockTime);
+            
+            currentWaitTimeRemaining = waitTimeBetweenWaves;
+            UpdateWaitModeTimerText(currentWaitTimeRemaining);
+            BreakMode = true;
         }
+    }
+
+    IEnumerator WaitTimeBetweenWavesTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SetKillCustomersText();
+        SpawnMode = true;
+        BreakMode = false;
+    }
+
+    public void SkipToSpawnWave() {
+        StopCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));
+        //StopAllCoroutines();
+        currentWaitTimeRemaining = 1f;
+        StartCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));
+
+        //Turn off Build Mode
+        buildMenu.SetActive(false);
+        BuildMode = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
