@@ -113,7 +113,7 @@ public class SpawnController : MonoBehaviour
             //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
             //WaveEnd();
             bool lastWave = false;
-            if(waveNumber == 9)
+            if(waveNumber == 2)
                 lastWave = true;
             gameController.EndWave(lastWave); 
             waveNumber++;
