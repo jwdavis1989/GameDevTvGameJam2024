@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2000
-  speed: 12.5
+  speed: 6.25
   money: 125
   type: 8
   gameController: {fileID: 0}
