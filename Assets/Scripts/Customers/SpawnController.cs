@@ -75,6 +75,7 @@ public class SpawnController : MonoBehaviour
                 {
                     GameObject newCustomer = Instantiate(customerTypes[i], spawnLocation, customerTypes[i].transform.rotation);
                     newCustomer.GetComponent<CustomerController>().spawn(gameController);
+
                     spawned = true;
                     //subtract this spawn from chart
                     waveSpawnRates[(int)newCustomer.GetComponent<CustomerController>().type][waveNumber]--;
