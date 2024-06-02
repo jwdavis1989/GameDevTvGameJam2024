@@ -2964,7 +2964,7 @@ MonoBehaviour:
     isUnlocked: 1
   - prefab: {fileID: 5092448065109166662, guid: 374197dd3537c334796dde3bddce39f9, type: 3}
     cost: 175
-    name: Cassette<br>Player
+    name: Microwave
     isUnlocked: 1
   currentTurretsList: []
   toasterTurret:
@@ -4698,7 +4698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSize
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontAsset
@@ -4706,7 +4706,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 40d208491e91bde49b4361cb11266ad1, type: 2}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSizeMax
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_sharedMaterial
@@ -4746,7 +4746,7 @@ PrefabInstance:
       objectReference: {fileID: 6818595911352517887}
     - target: {fileID: 3281696266579556049, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectCassettePlayerTurret
+      value: SelectGeneratorTurret
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4910,7 +4910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSize
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontAsset
@@ -4918,7 +4918,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 40d208491e91bde49b4361cb11266ad1, type: 2}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSizeMax
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_sharedMaterial
@@ -4958,7 +4958,7 @@ PrefabInstance:
       objectReference: {fileID: 6818595911352517887}
     - target: {fileID: 3281696266579556049, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectCassettePlayerTurret
+      value: SelectMicrowaveTurret
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5118,11 +5118,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_text
-      value: Lawn<br>Mower
+      value: Lawnmower
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSize
-      value: 9
+      value: 11.85
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontAsset
@@ -5130,7 +5130,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 40d208491e91bde49b4361cb11266ad1, type: 2}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_fontSizeMax
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 59377145826676299, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_sharedMaterial
@@ -5178,7 +5178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -1
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5186,7 +5186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801401280554636687, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.5
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5206943249480556022, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
       propertyPath: m_Type
