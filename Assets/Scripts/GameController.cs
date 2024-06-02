@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public List<AudioClip> audioClipList;
     public List<GameObject> aisles;
     public bool SpawnMode = false;
     public bool BuildMode = true;
     private bool BreakMode = true;
     public bool ceoEffect = false;
     private bool lastWave = false;
+    private int waveNumber = 0;
     public TextMeshProUGUI managerWriteUpText;
     public TextMeshProUGUI moneyText; 
     public TextMeshProUGUI clockText;
@@ -177,6 +179,12 @@ public class GameController : MonoBehaviour
     }
     public void EndWave(bool lastWave)
     {
+        waveNumber++;
+        if (waveNumber == 5 || lastWave)
+        {
+            GetComponent<AudioSource>().clip = audioClipList[0];
+            GetComponent<AudioSource>().Play();
+        }
         this.lastWave = lastWave;
         SpawnMode = false;
         InvokeRepeating("CheckCustomersAllDead", 1, 1);
@@ -216,6 +224,16 @@ public class GameController : MonoBehaviour
         SpawnMode = true;
         BreakMode = false;
         readyButton.SetActive(false);
+        if(waveNumber == 4)
+        {
+            Debug.Log("KAREN MUSIC");
+            gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
+            gameObject.GetComponent<AudioSource>().Play();
+        }
+        else if(waveNumber == 9)
+        {
+            gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
+        }
     }
 
     public void SkipToSpawnWave() {

@@ -71,6 +71,12 @@ public class CustomerController : MonoBehaviour
             if (type == CustomerType.CEO)
             {
                 gameController.ceoEffect = false;
+                gameController.GetComponent<AudioSource>().clip = gameController.audioClipList[0];
+                gameController.GetComponent<AudioSource>().Play();
+            }
+            if(type == CustomerType.KAREN)
+            {
+                
             }
             GameController.money += money;
             gameController.moneyText.text = "$"+GameController.money;
