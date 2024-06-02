@@ -44,7 +44,10 @@ public class SpawnController : MonoBehaviour
         waveSpawnRates[((int)CustomerType.Mom)] = momSpawnRate;
         waveSpawnRates[((int)CustomerType.Dad)] = dadSpawnRate;
         waveSpawnRates[RANDOM_INDEX] = randomSpawnRate;
-        gameController.aisles[2].GetComponent<AisleController>().setInactive();
+        foreach(GameObject aisle in gameController.aisles){
+            aisle.GetComponent<AisleController>().setInactive(); //asdf
+        }
+        gameController.aisles[0].GetComponent<AisleController>().setActive();
     }
 
     // Update is called once per frame
@@ -111,6 +114,9 @@ public class SpawnController : MonoBehaviour
             //WaveEnd();
             gameController.EndWave(); 
             waveNumber++;
+            if(waveNumber < gameController.aisles.Count) {
+                gameController.aisles[waveNumber].GetComponent<AisleController>().setActive();
+            }
             //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
             //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
             //Debug.Log("not spawned... custChecked:" + customersChecked + "waveNumber:"+waveNumber);

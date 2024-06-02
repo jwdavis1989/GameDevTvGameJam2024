@@ -74,7 +74,6 @@ public class CustomerController : MonoBehaviour
             }
             GameController.money += money;
             gameController.moneyText.text = "$"+GameController.money;
-            Debug.Log("mokneys:"+GameController.money); //comment
             Destroy(gameObject);
         }
         moveForward();
