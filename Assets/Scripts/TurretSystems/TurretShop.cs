@@ -27,8 +27,8 @@ public class TurretShop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         checkTowerHotkeys();
+
     }
 
     public void SelectToasterTurret()
