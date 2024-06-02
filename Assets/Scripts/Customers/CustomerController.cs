@@ -37,8 +37,8 @@ public class CustomerController : MonoBehaviour
     private AudioSource deathSound;
     private GameObject fromTarget;
     private bool goingToCenter = false;
-    private const float AISLEDISTANCE = 31.0f;
-    private const float CENTERLINE = -4.0f;
+    private const float AISLEDISTANCE = 26.0f;
+    private const float CENTERLINE = -0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -141,6 +141,7 @@ public class CustomerController : MonoBehaviour
         this.gameController = gameController;
         this.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         this.SelectNextMoveTarget();
+        Debug.Log(this.currentAisle + "ailse. ");//astest
     }
     public void toddlerSpawn(GameController gameController, int currentAisle, bool goingToNextAisle, GameObject moveTarget)
     {
