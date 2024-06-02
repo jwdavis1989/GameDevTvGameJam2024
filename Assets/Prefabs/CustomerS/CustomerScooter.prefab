@@ -338,6 +338,8 @@ MonoBehaviour:
   gameController: {fileID: 0}
   toddlerPrefab: {fileID: 0}
   bodyParts: {fileID: 8181240080405204176}
+  karenBoosted: 0
+  karenSpeed: 0
 --- !u!54 &3644575168418986926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -363,7 +365,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!82 &-8078181157282673199
 AudioSource:

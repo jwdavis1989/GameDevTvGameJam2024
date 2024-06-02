@@ -481,6 +481,8 @@ MonoBehaviour:
   gameController: {fileID: 0}
   toddlerPrefab: {fileID: 0}
   bodyParts: {fileID: 2733437779240886170}
+  karenBoosted: 0
+  karenSpeed: 0
 --- !u!54 &6104476079894688242
 Rigidbody:
   m_ObjectHideFlags: 0
