@@ -11,6 +11,7 @@ public class KarenEffect : MonoBehaviour
     void Start()
     {
         CustomerController karen = karenObject.GetComponent<CustomerController>();
+        //InvokeRepeating("Karen", 1, 2);
     }
 
     // Update is called once per frame
