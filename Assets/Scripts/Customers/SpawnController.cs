@@ -67,28 +67,28 @@ public class SpawnController : MonoBehaviour
         {
             customersChecked++;
             int customerTypeIndex = UnityEngine.Random.Range(0, spawnRatesCopy.Count);//pick random customer type
-            //int[] indices = new int[] {0,1,2,3,4,5,6,7,8 };
-            //Shuffle(indices);
-            //foreach(int i in indices)
-            //{
-            //    if (spawnRatesCopy[i][waveNumber] > 0)
-            //    {
-            //        GameObject newCustomer = Instantiate(customerTypes[i], spawnLocation, customerTypes[i].transform.rotation);
-            //        newCustomer.GetComponent<CustomerController>().spawn(gameController);
-            //        spawned = true;
-            //        //subtract this spawn from chart
-            //        waveSpawnRates[(int)newCustomer.GetComponent<CustomerController>().type][waveNumber]--;
-            //        break;
-            //    }
-            //}
-            if (spawnRatesCopy[customerTypeIndex][waveNumber] > 0)
+            int[] indices = new int[] { 0, 1, 2, 3, 4, 5, 6, 7};
+            Shuffle(indices);
+            foreach (int i in indices)
             {
-                GameObject newCustomer = Instantiate(customerTypes[customerTypeIndex], spawnLocation, customerTypes[customerTypeIndex].transform.rotation);
-                newCustomer.GetComponent<CustomerController>().spawn(gameController);
-                spawned = true;
-                //subtract this spawn from chart
-                waveSpawnRates[(int)newCustomer.GetComponent<CustomerController>().type][waveNumber]--;
+                if (spawnRatesCopy[i][waveNumber] > 0)
+                {
+                    GameObject newCustomer = Instantiate(customerTypes[i], spawnLocation, customerTypes[i].transform.rotation);
+                    newCustomer.GetComponent<CustomerController>().spawn(gameController);
+                    spawned = true;
+                    //subtract this spawn from chart
+                    waveSpawnRates[(int)newCustomer.GetComponent<CustomerController>().type][waveNumber]--;
+                    break;
+                }
             }
+            //if (spawnRatesCopy[customerTypeIndex][waveNumber] > 0)
+            //{
+            //    GameObject newCustomer = Instantiate(customerTypes[customerTypeIndex], spawnLocation, customerTypes[customerTypeIndex].transform.rotation);
+            //    newCustomer.GetComponent<CustomerController>().spawn(gameController);
+            //    spawned = true;
+            //    //subtract this spawn from chart
+            //    waveSpawnRates[(int)newCustomer.GetComponent<CustomerController>().type][waveNumber]--;
+            //}
         }
         if (!spawned)
         {
@@ -104,16 +104,16 @@ public class SpawnController : MonoBehaviour
         //    newCustomer.GetComponent<CustomerController>().spawn(gameController);
         //}
     }
-    //public void Shuffle<T>(this IList<T> list)
-    //{
-    //    int n = list.Count;
-    //    while (n > 1)
-    //    {
-    //        n--;
-    //        int k = rng.Next(n + 1);
-    //        T value = list[k];
-    //        list[k] = list[n];
-    //        list[n] = value;
-    //    }
-    //}
+    public void Shuffle(int[] list)
+    {
+        int n = list.Length;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            int value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
 }
