@@ -32,8 +32,7 @@ public class CustomerController : MonoBehaviour
     private int currentAisle = 0;
     private bool goingToNextAisle = false;
     public bool karenBoosted = false;
-    public float karenSpeed = 0;
-    private bool ceoBoosted = false;
+    public float karenSpeed = 12.5f;
     private AudioSource deathSound;
     private GameObject fromTarget;
     private bool goingToCenter = false;
@@ -69,6 +68,12 @@ public class CustomerController : MonoBehaviour
                 toddler3.GetComponent<CustomerController>().toddlerSpawn(gameController, currentAisle, goingToNextAisle, moveTarget);
 
             }
+            if (type == CustomerType.CEO)
+            {
+                gameController.ceoEffect = false;
+            }
+            GameController.money += money;
+            gameController.moneyText.text = "$"+GameController.money;
             Destroy(gameObject);
         }
         moveForward();
@@ -99,9 +104,10 @@ public class CustomerController : MonoBehaviour
             }
         }
         Vector3 newPosition;
-        if (karenBoosted)
+        if (karenBoosted && karenSpeed > speed)
         {
             newPosition = direction.normalized * karenSpeed * Time.deltaTime;
+            newPosition = new Vector3(newPosition.x, 0, newPosition.z);
         }
         else
         {
@@ -115,9 +121,9 @@ public class CustomerController : MonoBehaviour
             //ROTATION
             if (goingToCenter)
             {
-                bodyParts.transform.LookAt(new Vector3(CENTERLINE, transform.position.y, transform.position.z));
+                bodyParts.transform.LookAt(new Vector3(CENTERLINE, transform.position.y, transform.position.z)); 
             }else
-            bodyParts.transform.LookAt(moveTarget.transform.position);//method4
+            bodyParts.transform.LookAt(new Vector3(moveTarget.transform.position.x, transform.position.y, moveTarget.transform.position.z));//method4 
             //method1
             //Quaternion lookRotation = Quaternion.LookRotation(direction);
             //Vector3 rotation = Quaternion.Lerp(bodyParts.transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
@@ -141,7 +147,10 @@ public class CustomerController : MonoBehaviour
         this.gameController = gameController;
         this.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         this.SelectNextMoveTarget();
-        Debug.Log(this.currentAisle + "ailse. ");//astest
+        if(type == CustomerType.CEO)
+        {
+            gameController.ceoEffect = true;
+        }
     }
     public void toddlerSpawn(GameController gameController, int currentAisle, bool goingToNextAisle, GameObject moveTarget)
     {
@@ -173,7 +182,7 @@ public class CustomerController : MonoBehaviour
             {
                 gameController.addWriteUp();
             }
-            if (ceoBoosted)
+            if (gameController.ceoEffect)
             {
                 gameController.addWriteUp();
             }
