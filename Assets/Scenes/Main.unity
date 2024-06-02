@@ -248,10 +248,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameControllerObject: {fileID: 275392576}
   customerTypes:
-  - {fileID: 8037688080541746767, guid: ff4a0733e210feb469b9a1967d97efb5, type: 3}
   - {fileID: 8037688080541746767, guid: 498ccd6f2a9a4d946bdb8abc7bf4e80c, type: 3}
-  - {fileID: 8037688080541746767, guid: 8e1aa3bc91ac5d746987b742cd313b19, type: 3}
+  - {fileID: 8037688080541746767, guid: 5031e3f44af210b4791cfd24bacdb8d4, type: 3}
+  - {fileID: 8037688080541746767, guid: ff4a0733e210feb469b9a1967d97efb5, type: 3}
   - {fileID: 8037688080541746767, guid: 9aa80a8134159ac4188ae6345c0b96a3, type: 3}
+  - {fileID: 8037688080541746767, guid: 8e1aa3bc91ac5d746987b742cd313b19, type: 3}
   - {fileID: 8037688080541746767, guid: 85f26fd4a98c70e42a1007f43db396e6, type: 3}
   - {fileID: 8037688080541746767, guid: 99a26d7ddef6ab047add63703289fbb7, type: 3}
   - {fileID: 8037688080541746767, guid: 38d8546cd8e79b04e8b4e1f3ac938c82, type: 3}
@@ -483,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3403375024378524656, guid: b1e831cdef91e844a8f097808756d72b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.864762
+      value: 13.06
       objectReference: {fileID: 0}
     - target: {fileID: 3403375024378524656, guid: b1e831cdef91e844a8f097808756d72b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1133,7 +1134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3403375024378524656, guid: b1e831cdef91e844a8f097808756d72b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.864762
+      value: 13.06
       objectReference: {fileID: 0}
     - target: {fileID: 3403375024378524656, guid: b1e831cdef91e844a8f097808756d72b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1381,7 +1382,7 @@ PrefabInstance:
       objectReference: {fileID: 829461385}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: aisles.Array.size
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: managerWriteUpText
