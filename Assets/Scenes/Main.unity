@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17292504, g: 0.21610881, b: 0.29807755, a: 1}
+  m_IndirectSpecularColor: {r: 0.17292523, g: 0.2161091, b: 0.29807812, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1658,7 +1658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609276958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0050424025, y: 0.96149826, z: -0.27419525, w: 0.017681787}
+  m_LocalRotation: {x: 0.005042403, y: 0.96149826, z: -0.27419525, w: 0.017681787}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2406,6 +2406,14 @@ PrefabInstance:
     - target: {fileID: 6447104009311112724, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: microwaveTurret.cost
+      value: 215
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818595911352517887, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
+      propertyPath: turrets.Array.data[5].cost
+      value: 215
       objectReference: {fileID: 0}
     - target: {fileID: 8097346553893104149, guid: 5dd5bab359627144a8aa3bde9d448a04, type: 3}
       propertyPath: m_Name
@@ -3397,7 +3405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: isTurretFireSoundOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: aisles.Array.data[0]
@@ -4018,7 +4026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881276763}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.006259301, y: 0.9401126, z: -0.3403678, w: 0.017288499}
+  m_LocalRotation: {x: 0.0062593, y: 0.9401126, z: -0.3403678, w: 0.017288495}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
