@@ -12,7 +12,8 @@ public class SpawnController : MonoBehaviour
     public GameObject gameControllerObject;
     public GameObject[] customerTypes;
     private Vector3 spawnLocation;
-    public float spawnRate = 3.0f;
+    public float spawnRate = 1.5f;
+    public float spawnRateIncrease = 0.1f;
     private float spawnDelay = 1.0f;
     public int waveNumber = 0;
     private int[] adultSpawnRate = new[] { 10, 13, 13, 15, 25, 30, 36, 40, 0, 15 };
@@ -113,11 +114,14 @@ public class SpawnController : MonoBehaviour
             //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
             //WaveEnd();
             bool lastWave = false;
-            if(waveNumber == 2)
+            if(waveNumber == 9)
                 lastWave = true;
             gameController.EndWave(lastWave); 
             waveNumber++;
-            if(waveNumber < gameController.aisles.Count) {
+            CancelInvoke("SpawnCustomer");
+            spawnRate -= spawnRateIncrease;
+            InvokeRepeating("SpawnCustomer", spawnDelay, spawnRate);
+            if (waveNumber < gameController.aisles.Count) {
                 gameController.aisles[waveNumber].GetComponent<AisleController>().setActive();
             }
             //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
