@@ -54,6 +54,10 @@ public class GameController : MonoBehaviour
         if (managerWriteUps >= maxManagerWriteUps) {
             GameOver();
         }
+        //if (!ceoBoosted && other.GetComponent<CustomerController>().type == CustomerType.CEO)
+        //{
+        //    ceoBoosted = true;
+        //}
     }
     public void addWriteUp()
     {
