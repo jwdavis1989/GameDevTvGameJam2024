@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
         controller = gameObject.AddComponent<CharacterController>();
         controller.center = new Vector3(0, centerY, 0);
         animator = GetComponent<Animator>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
