@@ -72,6 +72,9 @@ public class CustomerController : MonoBehaviour
             {
                 gameController.ceoEffect = false;
             }
+            GameController.money += money;
+            gameController.moneyText.text = "$"+GameController.money;
+            Debug.Log("mokneys:"+GameController.money); //comment
             Destroy(gameObject);
         }
         moveForward();
@@ -122,7 +125,6 @@ public class CustomerController : MonoBehaviour
                 bodyParts.transform.LookAt(new Vector3(CENTERLINE, transform.position.y, transform.position.z)); 
             }else
             bodyParts.transform.LookAt(new Vector3(moveTarget.transform.position.x, transform.position.y, moveTarget.transform.position.z));//method4 
-            Debug.Log("rotating..."); 
             //method1
             //Quaternion lookRotation = Quaternion.LookRotation(direction);
             //Vector3 rotation = Quaternion.Lerp(bodyParts.transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
