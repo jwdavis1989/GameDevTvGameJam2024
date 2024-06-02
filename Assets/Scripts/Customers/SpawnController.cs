@@ -109,7 +109,8 @@ public class SpawnController : MonoBehaviour
             //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
             //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
             //WaveEnd();
-            gameController.EndWave(); waveNumber++;
+            gameController.EndWave(); 
+            waveNumber++;
             //Debug.Log("AdultSpawnRate:" + waveSpawnRates[(int)CustomerType.Adult][waveNumber]);
             //Debug.Log("RollerSpawnRate:" + waveSpawnRates[(int)CustomerType.RollerskateKid][waveNumber]);
             //Debug.Log("not spawned... custChecked:" + customersChecked + "waveNumber:"+waveNumber);
