@@ -1189,7 +1189,7 @@ MonoBehaviour:
   - {fileID: 8037688080541746767, guid: 85f26fd4a98c70e42a1007f43db396e6, type: 3}
   - {fileID: 8037688080541746767, guid: 99a26d7ddef6ab047add63703289fbb7, type: 3}
   - {fileID: 8037688080541746767, guid: 38d8546cd8e79b04e8b4e1f3ac938c82, type: 3}
-  spawnRate: 1.25
+  spawnRate: 1
   spawnRateIncrease: 0.075
   waveNumber: 0
 --- !u!1 &292606165
@@ -1646,7 +1646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609276958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005042403, y: 0.96149826, z: -0.27419525, w: 0.017681787}
+  m_LocalRotation: {x: 0.0050424025, y: 0.96149826, z: -0.27419525, w: 0.017681787}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3384,6 +3384,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
+      propertyPath: isTurretFireSoundOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: aisles.Array.data[0]
       value: 
       objectReference: {fileID: 389646049}
@@ -4002,7 +4006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881276763}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0062593, y: 0.9401126, z: -0.3403678, w: 0.017288495}
+  m_LocalRotation: {x: 0.006259301, y: 0.9401126, z: -0.3403678, w: 0.017288499}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
