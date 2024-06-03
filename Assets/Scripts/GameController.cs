@@ -226,7 +226,6 @@ public class GameController : MonoBehaviour
         readyButton.SetActive(false);
         if(waveNumber == 4)
         {
-            Debug.Log("KAREN MUSIC");
             gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
             gameObject.GetComponent<AudioSource>().Play();
         }
