@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     private bool BreakMode = true;
     public bool ceoEffect = false;
     private bool lastWave = false;
-    private int waveNumber = 0;
+    public int waveNumber = 0;
     public TextMeshProUGUI managerWriteUpText;
     public TextMeshProUGUI moneyText; 
     public TextMeshProUGUI clockText;
@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public GameObject readyButton;
     public static GameController instance;
     public GameObject buildMenu;
+    private TurretShop turretShop;
     private int currentClockTime = 7;
     public float waitTimeBetweenWaves = 30f;
     private float currentWaitTimeRemaining;
@@ -65,6 +66,7 @@ public class GameController : MonoBehaviour
         UpdateMoneyTextDisplay();
         UpdateClockTextDisplay(currentClockTime);
         buildMenu.SetActive(BuildMode);
+        turretShop = buildMenu.GetComponent<TurretShop>();
         currentWaitTimeRemaining = waitTimeBetweenWaves;
         StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
         UpdateWaitModeTimerText(currentWaitTimeRemaining);
@@ -214,6 +216,9 @@ public class GameController : MonoBehaviour
             UpdateWaitModeTimerText(currentWaitTimeRemaining);
             BreakMode = true;
             readyButton.SetActive(true);
+            turretShop.unlockTowers();
+            turretShop.resetTowerButtons();
+            turretShop.verifyTowerUnlocks();
         }
     }
 
