@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting = false;
 
     [Header("Movement")]
-    private float playerSpeed = 2.0f;
+    private float playerSpeed = 15.0f;
     private float sprintSpeed = 4.0f;
     private float sprintDuration = 3.0f;
     private float sprintCooldown = 4.0f;
@@ -50,17 +50,13 @@ public class PlayerController : MonoBehaviour
         {
             canAttack = false;
             isCurrentlyAttacking = true;
-            animator.SetBool("Melee", true);
+            // animator.SetBool("Melee", true);
             StartCoroutine(AttackCooldown());
             if (hasAttackDuration)
             {
                 StartCoroutine(AttackDuration());
             }
             // Attack();
-        }
-        else
-        {
-            animator.SetBool("Melee", false);
         }
 
         //Optional for multiplying attack
@@ -77,55 +73,55 @@ public class PlayerController : MonoBehaviour
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
-            animator.SetBool("Jump", false);
+            // animator.SetBool("Jump", false);
         }
 
         //Sprint Movement
-        float currentSpeed = playerSpeed;
-        if (canSprint && groundedPlayer && Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            isSprinting = true;
-            if (canSprint)
-            {
-                StartCoroutine(SprintDuration());
-            }
-        }
+        // float currentSpeed = playerSpeed;
+        // if (canSprint && groundedPlayer && Input.GetKeyDown(KeyCode.LeftShift))
+        // {
+        //     isSprinting = true;
+        //     if (canSprint)
+        //     {
+        //         StartCoroutine(SprintDuration());
+        //     }
+        // }
 
-        if (isSprinting)
-        {
-            currentSpeed = sprintSpeed;
-            animator.SetBool("Run", true);
-        }
-        else
-        {
-            animator.SetBool("Run", false);
-        }
+        // if (isSprinting)
+        // {
+        //     currentSpeed = sprintSpeed;
+        //     animator.SetBool("Run", true);
+        // }
+        // else
+        // {
+        //     animator.SetBool("Run", false);
+        // }
 
         //Normal Movement
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         move = playerCamera.transform.TransformDirection(move);
         move.y = 0;
-        controller.Move(move * Time.deltaTime * currentSpeed);
-
+        controller.Move(move * Time.deltaTime * playerSpeed);
+    
         if (move != Vector3.zero)
         {
             gameObject.transform.forward = move;
-            //walk
-            animator.SetBool("Walk", true);
+            //Walk
+            animator.SetBool("Run", true);
         }
         else
         {
-            //idle
-            animator.SetBool("Walk", false);
+            // Idle
+            animator.SetBool("Run", false);
         }
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-            //jump
-            animator.SetBool("Jump", true);
-        }
+        // if (Input.GetButtonDown("Jump") && groundedPlayer)
+        // {
+        //     playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+        //     //jump
+        //     animator.SetBool("Jump", true);
+        // }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
