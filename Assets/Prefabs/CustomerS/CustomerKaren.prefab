@@ -65,7 +65,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7740183771028003117}
@@ -162,6 +162,7 @@ MonoBehaviour:
   toddlerPrefab: {fileID: 0}
   bodyParts: {fileID: 2742148565080259952}
   karenBoosted: 0
+  animator: {fileID: 0}
 --- !u!54 &2221738189878993329
 Rigidbody:
   m_ObjectHideFlags: 0
