@@ -162,6 +162,7 @@ MonoBehaviour:
   toddlerPrefab: {fileID: 0}
   bodyParts: {fileID: 5964099535251640088}
   karenBoosted: 0
+  animator: {fileID: 0}
 --- !u!54 &6104476079894688242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -294,8 +295,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8037688080541746767}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 080048a02a7cfc047b97fe622cedb09f, type: 3}
-  m_Controller: {fileID: 9100000, guid: f5f165b86fb02684c95b154278634713, type: 2}
+  m_Avatar: {fileID: 9000000, guid: ef95bdd69e04b4442a45c11fa61fc54b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 316e3cc920ca36546900a05fc2993d22, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
