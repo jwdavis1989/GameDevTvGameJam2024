@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2032410702897909733}
   - component: {fileID: 1215581357472039954}
   - component: {fileID: -9192308176505333912}
+  - component: {fileID: -2487837979117591524}
   m_Layer: 0
   m_Name: CustomerRollerskateKid
   m_TagString: Customer
@@ -284,6 +285,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-2487837979117591524
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037688080541746767}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f90a3ce1fb1a86247859de75ebb88635, type: 3}
+  m_Controller: {fileID: 9100000, guid: 226f752d77b0c8b4cbb5e93d08519050, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2949335916465488895
 PrefabInstance:
   m_ObjectHideFlags: 0

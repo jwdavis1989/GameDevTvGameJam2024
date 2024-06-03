@@ -35,6 +35,7 @@ public class CustomerController : MonoBehaviour
     private float karenSpeed = 6.25f;
     private AudioSource deathSound;
     private GameObject fromTarget;
+    public Animator animator;
     private bool goingToCenter = false;
     private bool dead = false;
     private const float AISLEDISTANCE = 26.0f;
@@ -44,7 +45,8 @@ public class CustomerController : MonoBehaviour
     {
         //gameController = GameObject.Find("GameController").GetComponent<GameController>();
         deathSound = GetComponent<AudioSource>();
-        if(type == CustomerType.KAREN || type == CustomerType.CEO)
+        animator = GetComponent<Animator>();
+        if (type == CustomerType.KAREN || type == CustomerType.CEO)
         {
             InvokeRepeating("IncreaseInSize", 0.1f, 0.1f);
         }
@@ -64,7 +66,11 @@ public class CustomerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(dead) return;
+        if(dead)
+        { 
+            animator.SetTrigger("Death");
+            return;
+        }
         if(health <= 0.0f)
         {
             dead = true;
