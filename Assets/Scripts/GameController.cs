@@ -183,18 +183,18 @@ public class GameController : MonoBehaviour
     }
     private void CheckCustomersAllDead()
     {
-        Debug.Log("Customers Remaining: ");
-        Debug.Log(GameObject.FindGameObjectsWithTag("Customer").Length);
-        GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
-        List<GameObject> livingWithMeshCustomers = new List<GameObject>();
-        foreach (GameObject customer in livingCustomers) {
-            if (customer.GetComponent<MeshRenderer>().enabled) {
-                livingWithMeshCustomers.Add(customer);
-            }
-        }
+        // Debug.Log("Customers Remaining: ");
+        // Debug.Log(GameObject.FindGameObjectsWithTag("Customer").Length);
+        // GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
+        // List<GameObject> livingWithMeshCustomers = new List<GameObject>();
+        // foreach (GameObject customer in livingCustomers) {
+        //     if (customer.GetComponent<MeshRenderer>().enabled) {
+        //         livingWithMeshCustomers.Add(customer);
+        //     }
+        // }
 
-        // if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
-        if (livingWithMeshCustomers.Count <= 0)
+        if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
+        // if (livingWithMeshCustomers.Count <= 0)
         {
             // Debug.Log("No customers found!");
             CancelInvoke("CheckCustomersAllDead");
