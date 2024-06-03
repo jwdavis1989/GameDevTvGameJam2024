@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
 
     [Header("Player Stats")]
-    public int attackDamage = 40;
+    public float attackDamage = 40.0f;
     public float attackRate = 0.5f;
     public float attackRadius = 2f;
     public float knockbackForce = 10;
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
                 Damage(hitEnemy.gameObject);
 
                 //Knockback
-                Knockback(hitEnemy);
+                //Knockback(hitEnemy);
             }
         }
     }
