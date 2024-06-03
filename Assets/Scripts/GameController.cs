@@ -146,35 +146,23 @@ public class GameController : MonoBehaviour
         //Check hotkeys
         if (Input.GetKeyDown("q") || Input.GetKeyDown("e") || Input.GetKeyDown("f") || Input.GetKeyDown(KeyCode.Tab)) {
             if (BuildMode) {
-                //1. Lock Mouse
+                //Lock Mouse
                 Cursor.lockState = CursorLockMode.Locked;
-
-                //2. Enable Main Camera
-                //walkCamera.SetActive(true);
-
-                //3. Disable Build Camera
-                //buildCamera.SetActive(false);
                 
-                //4. Disable Build Menu
+                //Disable Build Menu
                 buildMenu.SetActive(false);
 
-                //5. Set Build Mode to false
+                //Set Build Mode to false
                 BuildMode = false;
             }
             else {
-                //1. Unlock Mouse
+                //Unlock Mouse
                 Cursor.lockState = CursorLockMode.Confined;
 
-                //2. Disable Main Camera
-                //walkCamera.SetActive(false);
-
-                //3. Enable Build Camera
-                //buildCamera.SetActive(true);
-
-                //4. Enable Build Menu
+                //Enable Build Menu
                 buildMenu.SetActive(true);
 
-                //5. Set Build Mode to true
+                //Set Build Mode to true
                 BuildMode = true;
             }
         }
@@ -195,9 +183,20 @@ public class GameController : MonoBehaviour
     }
     private void CheckCustomersAllDead()
     {
-        if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
+        Debug.Log("Customers Remaining: ");
+        Debug.Log(GameObject.FindGameObjectsWithTag("Customer").Length);
+        GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
+        List<GameObject> livingWithMeshCustomers = new List<GameObject>();
+        foreach (GameObject customer in livingCustomers) {
+            if (customer.GetComponent<MeshRenderer>().enabled) {
+                livingWithMeshCustomers.Add(customer);
+            }
+        }
+
+        // if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
+        if (livingWithMeshCustomers.Count <= 0)
         {
-            //Debug.Log("Build Mode Started!!");
+            // Debug.Log("No customers found!");
             CancelInvoke("CheckCustomersAllDead");
             if (this.lastWave)
             {
@@ -220,6 +219,16 @@ public class GameController : MonoBehaviour
             turretShop.unlockTowers();
             turretShop.resetTowerButtons();
             turretShop.verifyTowerUnlocks();
+
+            //Enable Turret Shop at end of Wave
+            //Unlock Mouse
+            Cursor.lockState = CursorLockMode.Confined;
+
+            //Enable Build Menu
+            buildMenu.SetActive(true);
+
+            //Set Build Mode to true
+            BuildMode = true;
         }
     }
 
@@ -255,5 +264,9 @@ public class GameController : MonoBehaviour
         BuildMode = false;
         Cursor.lockState = CursorLockMode.Locked;
         readyButton.SetActive(false);
+    }
+
+    public void ExitGame() {
+        Application.Quit();
     }
 }
