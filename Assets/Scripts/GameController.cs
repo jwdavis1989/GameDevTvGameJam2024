@@ -185,6 +185,7 @@ public class GameController : MonoBehaviour
         if (waveNumber == 5 || lastWave)
         {
             GetComponent<AudioSource>().clip = audioClipList[0];
+            gameObject.GetComponent<AudioSource>().volume  = 0.2f;
             GetComponent<AudioSource>().Play();
         }
         this.lastWave = lastWave;
@@ -232,11 +233,14 @@ public class GameController : MonoBehaviour
         if(waveNumber == 4)
         {
             gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
+            gameObject.GetComponent<AudioSource>().volume  = 0.5f;
             gameObject.GetComponent<AudioSource>().Play();
         }
         else if(waveNumber == 9)
         {
             gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
+            gameObject.GetComponent<AudioSource>().volume  = 0.5f;
+            gameObject.GetComponent<AudioSource>().Play();
         }
     }
 

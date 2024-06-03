@@ -84,9 +84,9 @@ public class CustomerController : MonoBehaviour
                 GameObject toddler1 = Instantiate(toddlerPrefab, transform.position, transform.rotation);
                 toddler1.transform.position -= new Vector3(0.5f, 0, 0);
                 toddler1.GetComponent<CustomerController>().toddlerSpawn(gameController, currentAisle, goingToNextAisle, moveTarget);
-                GameObject toddler2 = Instantiate(toddlerPrefab);
+                GameObject toddler2 = Instantiate(toddlerPrefab, transform.position, transform.rotation);
                 toddler2.GetComponent<CustomerController>().toddlerSpawn(gameController, currentAisle, goingToNextAisle, moveTarget);
-                GameObject toddler3 = Instantiate(toddlerPrefab);
+                GameObject toddler3 = Instantiate(toddlerPrefab, transform.position, transform.rotation);
                 
                 toddler3.transform.position += new Vector3(0.5f, 0, 0);
                 toddler3.GetComponent<CustomerController>().toddlerSpawn(gameController, currentAisle, goingToNextAisle, moveTarget);
