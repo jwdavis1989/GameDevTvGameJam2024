@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2032410702897909733}
   - component: {fileID: 3644575168418986926}
   - component: {fileID: -8078181157282673199}
+  - component: {fileID: -2221187803281820372}
   m_Layer: 0
   m_Name: CustomerScooter
   m_TagString: Customer
@@ -32,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4068695665475921692}
   m_Father: {fileID: 0}
@@ -129,6 +130,7 @@ MonoBehaviour:
   toddlerPrefab: {fileID: 0}
   bodyParts: {fileID: 8181240080405204176}
   karenBoosted: 0
+  animator: {fileID: 0}
 --- !u!54 &3644575168418986926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -252,6 +254,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-2221187803281820372
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037688080541746767}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 797b03ab2b5351f409fb4c3642f08fea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8181240080405204176
 GameObject:
   m_ObjectHideFlags: 0

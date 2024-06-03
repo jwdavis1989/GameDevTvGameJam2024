@@ -9231,8 +9231,12 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
+      propertyPath: isBackgroundMusicOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: isTurretFireSoundOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3573843705536917988, guid: 2c76e71d76c8cad438f8627a6e60ce49, type: 3}
       propertyPath: aisles.Array.data[0]
@@ -10318,37 +10322,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6018255552030410566, guid: 409e787da56312f49abd4b7e2d65a02c, type: 3}
   m_PrefabInstance: {fileID: 223511924}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1633713007
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1633713008}
-  m_Layer: 0
-  m_Name: Attack Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1633713008
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633713007}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.123, y: 1.19, z: 0.28}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 683893313}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1639597962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2424856964625419503, guid: b1e831cdef91e844a8f097808756d72b, type: 3}
@@ -13368,7 +13341,6 @@ SceneRoots:
   - {fileID: 629565759}
   - {fileID: 995013806}
   - {fileID: 169180875}
-  - {fileID: 1510233881}
   - {fileID: 1348030462}
   - {fileID: 766425690}
   - {fileID: 1543411784}
