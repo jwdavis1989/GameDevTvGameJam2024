@@ -50,13 +50,17 @@ public class PlayerController : MonoBehaviour
         {
             canAttack = false;
             isCurrentlyAttacking = true;
-            // animator.SetBool("Melee", true);
+            animator.SetBool("Attack", true);
             StartCoroutine(AttackCooldown());
             if (hasAttackDuration)
             {
                 StartCoroutine(AttackDuration());
             }
             // Attack();
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
         }
 
         //Optional for multiplying attack
