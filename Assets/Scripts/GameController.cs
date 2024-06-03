@@ -265,4 +265,8 @@ public class GameController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         readyButton.SetActive(false);
     }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
 }
