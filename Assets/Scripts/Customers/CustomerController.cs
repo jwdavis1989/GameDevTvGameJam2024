@@ -106,7 +106,7 @@ public class CustomerController : MonoBehaviour
             gameController.moneyText.text = "$"+GameController.money;
             //Destroy(gameObject);
             speed = 0;
-            Invoke("Death", 3);
+            Invoke("Death", 2);
         }
         moveForward();
         
