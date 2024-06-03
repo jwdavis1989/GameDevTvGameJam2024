@@ -183,18 +183,18 @@ public class GameController : MonoBehaviour
     }
     private void CheckCustomersAllDead()
     {
-        Debug.Log("Customers Remaining: ");
-        Debug.Log(GameObject.FindGameObjectsWithTag("Customer").Length);
-        GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
-        List<GameObject> livingWithMeshCustomers = new List<GameObject>();
-        foreach (GameObject customer in livingCustomers) {
-            if (customer.GetComponent<MeshRenderer>().enabled) {
-                livingWithMeshCustomers.Add(customer);
-            }
-        }
+        //Debug.Log("Customers Remaining: "+ GameObject.FindGameObjectsWithTag("Customer").Length);
+        //Debug.Log();
+        //GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
+        //List<GameObject> livingWithMeshCustomers = new List<GameObject>();
+        //foreach (GameObject customer in livingCustomers) {
+        //    if (customer.GetComponent<MeshRenderer>().enabled) {
+        //        livingWithMeshCustomers.Add(customer);
+        //    }
+        //}
 
-        // if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
-        if (livingWithMeshCustomers.Count <= 0)
+        if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
+        //if (livingWithMeshCustomers.Count <= 0)
         {
             // Debug.Log("No customers found!");
             CancelInvoke("CheckCustomersAllDead");
@@ -206,13 +206,14 @@ public class GameController : MonoBehaviour
             }
 
                 //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
-                StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+                
 
             //Update Clock Text to next hour
             currentClockTime++;
             UpdateClockTextDisplay(currentClockTime);
             
             currentWaitTimeRemaining = waitTimeBetweenWaves;
+            StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
             UpdateWaitModeTimerText(currentWaitTimeRemaining);
             BreakMode = true;
             readyButton.SetActive(true);
@@ -254,7 +255,11 @@ public class GameController : MonoBehaviour
     }
 
     public void SkipToSpawnWave() {
+        //if(BuildMode!=true) { return; }
+        //if (currentWaitTimeRemaining > 28.0f) return;
+        Debug.Log("SKIPTOSPAWNWAVE");
         StopCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));
+        StopCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
         //StopAllCoroutines();
         currentWaitTimeRemaining = 1f;
         StartCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));
