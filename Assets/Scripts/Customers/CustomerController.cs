@@ -32,10 +32,11 @@ public class CustomerController : MonoBehaviour
     private int currentAisle = 0;
     private bool goingToNextAisle = false;
     public bool karenBoosted = false;
-    public float karenSpeed = 12.5f;
+    private float karenSpeed = 6.25f;
     private AudioSource deathSound;
     private GameObject fromTarget;
     private bool goingToCenter = false;
+    private bool dead = false;
     private const float AISLEDISTANCE = 26.0f;
     private const float CENTERLINE = -0.0f;
     // Start is called before the first frame update
@@ -43,13 +44,30 @@ public class CustomerController : MonoBehaviour
     {
         //gameController = GameObject.Find("GameController").GetComponent<GameController>();
         deathSound = GetComponent<AudioSource>();
+        if(type == CustomerType.KAREN || type == CustomerType.CEO)
+        {
+            InvokeRepeating("IncreaseInSize", 0.1f, 0.1f);
+        }
+    }
+    void IncreaseInSize()
+    {
+        if(gameObject.transform.localScale.x < 4.0f)
+        {
+            gameObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+        }
+        else
+        {
+            CancelInvoke("IncreaseInSize");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(dead) return;
         if(health <= 0.0f)
         {
+            dead = true;
             if (deathSound && GameController.instance.isDeathSoundOn)
             {
                 deathSound.Play();
@@ -71,13 +89,25 @@ public class CustomerController : MonoBehaviour
             if (type == CustomerType.CEO)
             {
                 gameController.ceoEffect = false;
+                gameController.GetComponent<AudioSource>().clip = gameController.audioClipList[0];
+                gameController.GetComponent<AudioSource>().Play();
+            }
+            if(type == CustomerType.KAREN)
+            {
+                
             }
             GameController.money += money;
             gameController.moneyText.text = "$"+GameController.money;
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            speed = 0;
+            Invoke("Death", 3);
         }
         moveForward();
         
+    }
+    void Death()
+    {
+        Destroy(gameObject);
     }
  
     void FixedUpdate()

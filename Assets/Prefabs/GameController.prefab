@@ -45,13 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc92aaaeb96d404a86c43d37c77043d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClipList:
+  - {fileID: 8300000, guid: 41e5d61cfd5910143953eb4c247287ce, type: 3}
+  - {fileID: 8300000, guid: 6b3efafa84f4fbe4ab67bc2900a8058f, type: 3}
   aisles:
   - {fileID: 0}
   - {fileID: 0}
   SpawnMode: 1
   BuildMode: 0
+  ceoEffect: 0
   managerWriteUpText: {fileID: 0}
   moneyText: {fileID: 0}
+  clockText: {fileID: 0}
+  waitModeTimerText: {fileID: 0}
+  readyButton: {fileID: 0}
+  buildMenu: {fileID: 0}
+  waitTimeBetweenWaves: 30
   managerWriteUps: 0
   maxManagerWriteUps: 10
   startingMoney: 700
@@ -59,11 +68,14 @@ MonoBehaviour:
   range: 10
   attackSpeed: 1
   generatorBuffMultiplier: 1.25
+  towerSellbackMultiplier: 0.5
   isTurretFireSoundOn: 1
   isBackgroundMusicOn: 1
   isDeathSoundOn: 1
   isMouseCameraPanEnabled: 0
   globalVolume: 1
+  buildCamera: {fileID: 0}
+  walkCamera: {fileID: 0}
 --- !u!114 &7562516924131832831
 MonoBehaviour:
   m_ObjectHideFlags: 0
