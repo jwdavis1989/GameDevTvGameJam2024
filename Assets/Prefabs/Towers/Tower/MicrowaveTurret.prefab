@@ -293,8 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736317a79f74f2840bac14da3820087a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMultiplier: 0.4
-  rangeMultiplier: 1.25
+  damageMultiplier: 0.24
+  rangeMultiplier: 0.9
   attackSpeedMultiplier: 1
   turnSpeed: 30
   IsgeneratorBuffed: 0

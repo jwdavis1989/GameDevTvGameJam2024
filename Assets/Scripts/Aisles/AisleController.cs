@@ -8,16 +8,33 @@ public class AisleController : MonoBehaviour
     public bool isActive = true;
     public GameObject westMarker;
     public GameObject eastMarker;
+    public GameObject[] ropes;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //setActive();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void setActive()
+    {
+        isActive = true;
+        foreach (GameObject rope in ropes)
+        {
+            rope.SetActive(false);
+        }
+    }
+    public void setInactive()
+    {
+        isActive = false;
+        foreach(GameObject rope in ropes)
+        {
+            rope.SetActive(true);
+        }
     }
     public GameObject getClosestSide(Vector3 position)
     {

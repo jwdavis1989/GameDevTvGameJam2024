@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,6 @@ public enum CustomerType
     RollerskateKid,
     Mom,
     Dad,
-    DisgruntledEmployee,
     CEO
 }
 public class CustomerController : MonoBehaviour 
@@ -31,23 +31,49 @@ public class CustomerController : MonoBehaviour
     public GameObject bodyParts;
     private int currentAisle = 0;
     private bool goingToNextAisle = false;
-    private bool karenBoosted = false;
-    private bool ceoBoosted = false;
+    public bool karenBoosted = false;
+    private float karenSpeed = 6.25f;
     private AudioSource deathSound;
     private GameObject fromTarget;
+    public Animator animator;
     private bool goingToCenter = false;
+    private bool dead = false;
+    private const float AISLEDISTANCE = 26.0f;
+    private const float CENTERLINE = -0.0f;
     // Start is called before the first frame update
     void Start()
     {
         //gameController = GameObject.Find("GameController").GetComponent<GameController>();
         deathSound = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+        if (type == CustomerType.KAREN || type == CustomerType.CEO)
+        {
+            InvokeRepeating("IncreaseInSize", 0.1f, 0.1f);
+        }
+    }
+    void IncreaseInSize()
+    {
+        if(gameObject.transform.localScale.x < 4.0f)
+        {
+            gameObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+        }
+        else
+        {
+            CancelInvoke("IncreaseInSize");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(dead)
+        { 
+            animator.SetTrigger("Death");
+            return;
+        }
         if(health <= 0.0f)
         {
+            dead = true;
             if (deathSound && GameController.instance.isDeathSoundOn)
             {
                 deathSound.Play();
@@ -58,18 +84,36 @@ public class CustomerController : MonoBehaviour
                 GameObject toddler1 = Instantiate(toddlerPrefab, transform.position, transform.rotation);
                 toddler1.transform.position -= new Vector3(0.5f, 0, 0);
                 toddler1.GetComponent<CustomerController>().toddlerSpawn(gameController, currentAisle, goingToNextAisle, moveTarget);
-                GameObject toddler2 = Instantiate(toddlerPrefab);
+                GameObject toddler2 = Instantiate(toddlerPrefab, transform.position, transform.rotation);
                 toddler2.GetComponent<CustomerController>().toddlerSpawn(gameController, currentAisle, goingToNextAisle, moveTarget);
-                GameObject toddler3 = Instantiate(toddlerPrefab);
+                GameObject toddler3 = Instantiate(toddlerPrefab, transform.position, transform.rotation);
                 
                 toddler3.transform.position += new Vector3(0.5f, 0, 0);
                 toddler3.GetComponent<CustomerController>().toddlerSpawn(gameController, currentAisle, goingToNextAisle, moveTarget);
 
             }
-            Destroy(gameObject);
+            if (type == CustomerType.CEO)
+            {
+                gameController.ceoEffect = false;
+                gameController.GetComponent<AudioSource>().clip = gameController.audioClipList[0];
+                gameController.GetComponent<AudioSource>().Play();
+            }
+            if(type == CustomerType.KAREN)
+            {
+                
+            }
+            GameController.money += money;
+            gameController.moneyText.text = "$"+GameController.money;
+            //Destroy(gameObject);
+            speed = 0;
+            Invoke("Death", 2);
         }
         moveForward();
         
+    }
+    void Death()
+    {
+        Destroy(gameObject);
     }
  
     void FixedUpdate()
@@ -83,13 +127,39 @@ public class CustomerController : MonoBehaviour
             SelectNextMoveTarget();
         }
         Vector3 direction = moveTarget.transform.position - transform.position;
-        Vector3 newPosition = direction.normalized * speed * Time.deltaTime;
+        if (goingToCenter){
+            Vector3 center = new Vector3(CENTERLINE, transform.position.y, transform.position.z);
+            if(Vector3.Distance(center, transform.position) < 1.0f)
+            {
+                goingToCenter = false;
+                //direction = moveTarget.transform.position - transform.position;
+            }
+            else
+            {
+                direction = center - transform.position;
+            }
+        }
+        Vector3 newPosition;
+        if (karenBoosted && karenSpeed > speed)
+        {
+            newPosition = direction.normalized * karenSpeed * Time.deltaTime;
+            newPosition = new Vector3(newPosition.x, 0, newPosition.z);
+        }
+        else
+        {
+            newPosition = direction.normalized * speed * Time.deltaTime;
+            newPosition = new Vector3(newPosition.x, 0, newPosition.z);
+        }
         transform.Translate(newPosition);
         //transform.forward = newPosition;
         if(bodyParts != null)
         {
             //ROTATION
-            bodyParts.transform.LookAt(moveTarget.transform.position);//method4
+            if (goingToCenter)
+            {
+                bodyParts.transform.LookAt(new Vector3(CENTERLINE, transform.position.y, transform.position.z)); 
+            }else
+            bodyParts.transform.LookAt(new Vector3(moveTarget.transform.position.x, transform.position.y, moveTarget.transform.position.z));//method4 
             //method1
             //Quaternion lookRotation = Quaternion.LookRotation(direction);
             //Vector3 rotation = Quaternion.Lerp(bodyParts.transform.rotation, lookRotation, Time.deltaTime * 1).eulerAngles;
@@ -111,7 +181,12 @@ public class CustomerController : MonoBehaviour
         currentAisle = 0;
         goingToNextAisle = false;
         this.gameController = gameController;
+        this.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         this.SelectNextMoveTarget();
+        if(type == CustomerType.CEO)
+        {
+            gameController.ceoEffect = true;
+        }
     }
     public void toddlerSpawn(GameController gameController, int currentAisle, bool goingToNextAisle, GameObject moveTarget)
     {
@@ -131,7 +206,7 @@ public class CustomerController : MonoBehaviour
                 //Debug.Log("Collision Selecting next move"); 
             }else if (goingToCenter && other.GetComponent<AisleMarker>() != null && other.GetComponent<AisleMarker>().isActive())
             {
-                SelectNextMoveTarget();
+                //SelectNextMoveTarget();
             }
 
 
@@ -143,7 +218,7 @@ public class CustomerController : MonoBehaviour
             {
                 gameController.addWriteUp();
             }
-            if (ceoBoosted)
+            if (gameController.ceoEffect)
             {
                 gameController.addWriteUp();
             }
@@ -151,28 +226,21 @@ public class CustomerController : MonoBehaviour
         }
         else if (other.CompareTag("Customer"))
         {
-            if (!karenBoosted && other.GetComponent<CustomerController>().type == CustomerType.KAREN)
-            {
-                karenBoosted = true;
-                speed *= 1.5f;
-            }else if (!ceoBoosted && other.GetComponent<CustomerController>().type == CustomerType.CEO)
-            {
-                ceoBoosted = true;
-            }
         }
     }
     public void setAisle(int aisle)
     {
-        currentAisle += aisle;
+        currentAisle = aisle;
     }
     void SelectNextMoveTarget()
     {
         //new code attempt
-        //if(goingToCenter)
-        //{
-        //    //reached center continue onward
-        //    this.moveTarget = this.fromTarget;
-        //}else
+        if (goingToCenter)
+        {
+            //reached center continue onward
+            this.moveTarget = this.fromTarget;
+        }
+        else
         //end new code attempt
         if (goingToNextAisle)
         {
@@ -191,6 +259,10 @@ public class CustomerController : MonoBehaviour
             else
             {
                 this.moveTarget = GameObject.FindWithTag("Manager");
+                if (Vector3.Distance(transform.position, moveTarget.transform.position) > AISLEDISTANCE)
+                {// longer than an aisle
+                    goingToCenter = true;
+                }
             }
             
         }
@@ -217,18 +289,22 @@ public class CustomerController : MonoBehaviour
             {
                 this.moveTarget = currentAisleObject.GetComponent<AisleController>().getClosestSide(transform.position);
                 //new code attempt
-                //if (Vector3.Distance(transform.position, moveTarget.transform.position) > 31.5f)
-                //{// longer than an aisle
-                //    goingToCenter = true;
-                //    holdTarget = this.moveTarget;
-                //    this.moveTarget = this.fromTarget;
-                //    this.fromTarget = holdTarget;
-                //}
-                ////end new code attempt
+                if (Vector3.Distance(transform.position, moveTarget.transform.position) > AISLEDISTANCE)
+                {// longer than an aisle
+                    goingToCenter = true;
+                    //holdTarget = this.moveTarget;
+                    //this.moveTarget = this.fromTarget;
+                    //this.fromTarget = holdTarget;
+                }
+                //end new code attempt
             }
             else
             {
                 this.moveTarget = GameObject.FindWithTag("Manager");
+                if (Vector3.Distance(transform.position, moveTarget.transform.position) > AISLEDISTANCE)
+                {// longer than an aisle
+                    goingToCenter = true;
+                }
             }
             
         }

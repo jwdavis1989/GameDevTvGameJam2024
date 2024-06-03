@@ -21,14 +21,15 @@ public class TurretShop : MonoBehaviour
         buildManager = BuildManager.instance;
         //populateTurretBuyButtons();
         resetTowerButtons();
+        unlockTowers();
         verifyTowerUnlocks();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         checkTowerHotkeys();
+
     }
 
     public void SelectToasterTurret()
@@ -83,7 +84,9 @@ public class TurretShop : MonoBehaviour
             if (turretBluePrint.isUnlocked) {
                 //currentTurretsList[verifiedTowers] = turrets[i];
                 currentTurretsList.Add(turrets[i]);
-                verifiedTowers++;
+                if (verifiedTowers < 6) {
+                    verifiedTowers++;
+                }
                 transform.GetChild(i).gameObject.SetActive(true);
                 
                 //Set Hotkey
@@ -96,6 +99,14 @@ public class TurretShop : MonoBehaviour
                 transform.GetChild(i).transform.GetChild(6).GetComponent<TMPro.TextMeshProUGUI>().text = "$" + turrets[i].cost;
             }
             i++;
+        }
+    }
+
+    public void unlockTowers() {
+        if (GameController.instance.waveNumber < 6) {
+            for (int i = 0; i < (GameController.instance.waveNumber + 1); i++) {
+                turrets[i].isUnlocked = true;
+            }
         }
     }
 
