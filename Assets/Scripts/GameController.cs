@@ -52,9 +52,11 @@ public class GameController : MonoBehaviour
 
     void Awake() {
         if (instance) {
+            Debug.Log("instance = true");
             return;
         }
             instance = this;
+            Debug.Log("instance = this");
     }
 
     // Start is called before the first frame update
@@ -181,8 +183,7 @@ public class GameController : MonoBehaviour
         InvokeRepeating("CheckCustomersAllDead", 1, 1);
 
     }
-    private void CheckCustomersAllDead()
-    {
+    private void CheckCustomersAllDead() {
         //Debug.Log("Customers Remaining: "+ GameObject.FindGameObjectsWithTag("Customer").Length);
         //Debug.Log();
         //GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
@@ -192,11 +193,11 @@ public class GameController : MonoBehaviour
         //        livingWithMeshCustomers.Add(customer);
         //    }
         //}
-
+        Debug.Log(GameObject.FindGameObjectsWithTag("Customer").Length);
         if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
         //if (livingWithMeshCustomers.Count <= 0)
         {
-            // Debug.Log("No customers found!");
+            Debug.Log("No customers found!");
             CancelInvoke("CheckCustomersAllDead");
             if (this.lastWave)
             {
@@ -205,23 +206,34 @@ public class GameController : MonoBehaviour
                 return;
             }
 
-                //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
+            //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
                 
 
             //Update Clock Text to next hour
             currentClockTime++;
             UpdateClockTextDisplay(currentClockTime);
             
-            currentWaitTimeRemaining = waitTimeBetweenWaves;
+            //Begin Break Countdown Function
+            StopCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
             StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+
+            //Update Break Timer Text
+            currentWaitTimeRemaining = waitTimeBetweenWaves;
             UpdateWaitModeTimerText(currentWaitTimeRemaining);
+
+            //Activate Breakmode Text
             BreakMode = true;
+
+            //Enable Skip Break Button
             readyButton.SetActive(true);
+
+            //Unlock a new tower
             turretShop.unlockTowers();
+
+            //Update Tower Buttons/Hotkeys
             turretShop.resetTowerButtons();
             turretShop.verifyTowerUnlocks();
 
-            //Enable Turret Shop at end of Wave
             //Unlock Mouse
             Cursor.lockState = CursorLockMode.Confined;
 
@@ -237,16 +249,11 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         SetKillCustomersText();
+        Debug.Log("SpawnMode = true");
         SpawnMode = true;
         BreakMode = false;
         readyButton.SetActive(false);
-        if(waveNumber == 4)
-        {
-            gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
-            gameObject.GetComponent<AudioSource>().volume  = 0.5f;
-            gameObject.GetComponent<AudioSource>().Play();
-        }
-        else if(waveNumber == 9)
+        if(waveNumber == 4 || waveNumber == 9)
         {
             gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
             gameObject.GetComponent<AudioSource>().volume  = 0.5f;

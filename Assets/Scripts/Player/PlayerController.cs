@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(AttackDuration());
             }
             // Attack();
-            Debug.Log("canAttack && Input.GetMouseButtonDown(0) && !GameController.instance.BuildMode");
         }
         else
         {
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
         //Optional for multiplying attack
         if (isCurrentlyAttacking && hasAttackDuration)
         {
-            Debug.Log("isCurrentlyAttacking && hasAttackDuration");
             Attack();
         }
     }
@@ -147,7 +145,6 @@ public class PlayerController : MonoBehaviour
                 //Knockback(hitEnemy);
             }
         }
-        Debug.Log("Animation Invocation");
     }
 
     public void Damage(GameObject enemy)
