@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(attackRate);
+        animator.SetBool("Attack", false);
         canAttack = true;
     }
 
