@@ -70,8 +70,11 @@ public class GameController : MonoBehaviour
         buildMenu.SetActive(BuildMode);
         turretShop = buildMenu.GetComponent<TurretShop>();
         currentWaitTimeRemaining = waitTimeBetweenWaves;
-        StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
-        UpdateWaitModeTimerText(currentWaitTimeRemaining);
+
+        //Commenting out the line below stops Waves 1 & 2 from happening without a break, somehow.
+        //StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+
+        //UpdateWaitModeTimerText(currentWaitTimeRemaining);
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -85,7 +88,7 @@ public class GameController : MonoBehaviour
             HandleToggleBuildMenu();
 
             //Handle Timer Text
-            if (BreakMode) {
+            if (BreakMode && waveNumber != 0) {
                 currentWaitTimeRemaining -= Time.deltaTime;
                 UpdateWaitModeTimerText(currentWaitTimeRemaining);
             }
