@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         move.y = 0;
         controller.Move(move * Time.deltaTime * playerSpeed);
     
-        if (move != Vector3.zero)
+        if (move != Vector3.zero && !animator.GetBool("Attack"))
         {
             gameObject.transform.forward = move;
             //Walk
