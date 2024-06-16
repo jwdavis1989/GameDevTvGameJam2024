@@ -73,7 +73,7 @@ public class SpawnController : MonoBehaviour
         {
             customersChecked++;
             //int customerTypeIndex = UnityEngine.Random.Range(0, spawnRatesCopy.Count);//pick random customer type
-            int[] customerTypeIndices = new int[] { 0, 1, 2, 3, 4, 5, 6, 7};
+            int[] customerTypeIndices = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8};
             Shuffle(customerTypeIndices);
             foreach (int i in customerTypeIndices)
             {
@@ -82,7 +82,7 @@ public class SpawnController : MonoBehaviour
                     GameObject newCustomer;
                     if(i == RANDOM_INDEX) //spawn random
                     {
-                        int randomCustomerIndex = UnityEngine.Random.Range(1, spawnRatesCopy.Count - 1);//all customer types except KAREN and CEO
+                        int randomCustomerIndex = UnityEngine.Random.Range(1, 6);//all customer types except KAREN and CEO
                         newCustomer = Instantiate(customerTypes[randomCustomerIndex], spawnLocation, customerTypes[randomCustomerIndex].transform.rotation);
                     }
                     else
