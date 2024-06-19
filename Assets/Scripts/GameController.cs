@@ -52,9 +52,11 @@ public class GameController : MonoBehaviour
 
     void Awake() {
         if (instance) {
+            Debug.Log("instance = true");
             return;
         }
             instance = this;
+            Debug.Log("instance = this");
     }
 
     // Start is called before the first frame update
@@ -68,8 +70,11 @@ public class GameController : MonoBehaviour
         buildMenu.SetActive(BuildMode);
         turretShop = buildMenu.GetComponent<TurretShop>();
         currentWaitTimeRemaining = waitTimeBetweenWaves;
-        StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
-        UpdateWaitModeTimerText(currentWaitTimeRemaining);
+
+        //Commenting out the line below stops Waves 1 & 2 from happening without a break, somehow.
+        //StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+
+        //UpdateWaitModeTimerText(currentWaitTimeRemaining);
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -83,7 +88,7 @@ public class GameController : MonoBehaviour
             HandleToggleBuildMenu();
 
             //Handle Timer Text
-            if (BreakMode) {
+            if (BreakMode && waveNumber != 0) {
                 currentWaitTimeRemaining -= Time.deltaTime;
                 UpdateWaitModeTimerText(currentWaitTimeRemaining);
             }
@@ -181,22 +186,21 @@ public class GameController : MonoBehaviour
         InvokeRepeating("CheckCustomersAllDead", 1, 1);
 
     }
-    private void CheckCustomersAllDead()
-    {
-        Debug.Log("Customers Remaining: ");
+    private void CheckCustomersAllDead() {
+        //Debug.Log("Customers Remaining: "+ GameObject.FindGameObjectsWithTag("Customer").Length);
+        //Debug.Log();
+        //GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
+        //List<GameObject> livingWithMeshCustomers = new List<GameObject>();
+        //foreach (GameObject customer in livingCustomers) {
+        //    if (customer.GetComponent<MeshRenderer>().enabled) {
+        //        livingWithMeshCustomers.Add(customer);
+        //    }
+        //}
         Debug.Log(GameObject.FindGameObjectsWithTag("Customer").Length);
-        GameObject[] livingCustomers = GameObject.FindGameObjectsWithTag("Customer");
-        List<GameObject> livingWithMeshCustomers = new List<GameObject>();
-        foreach (GameObject customer in livingCustomers) {
-            if (customer.GetComponent<MeshRenderer>().enabled) {
-                livingWithMeshCustomers.Add(customer);
-            }
-        }
-
-        // if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
-        if (livingWithMeshCustomers.Count <= 0)
+        if(GameObject.FindGameObjectsWithTag("Customer").Length == 0)
+        //if (livingWithMeshCustomers.Count <= 0)
         {
-            // Debug.Log("No customers found!");
+            Debug.Log("No customers found!");
             CancelInvoke("CheckCustomersAllDead");
             if (this.lastWave)
             {
@@ -205,22 +209,34 @@ public class GameController : MonoBehaviour
                 return;
             }
 
-                //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
-                StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+            //Start Wait Mode Timer, when timer runs out, set SpawnMode = true
+                
 
             //Update Clock Text to next hour
             currentClockTime++;
             UpdateClockTextDisplay(currentClockTime);
             
+            //Begin Break Countdown Function
+            StopCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+            StartCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
+
+            //Update Break Timer Text
             currentWaitTimeRemaining = waitTimeBetweenWaves;
             UpdateWaitModeTimerText(currentWaitTimeRemaining);
+
+            //Activate Breakmode Text
             BreakMode = true;
+
+            //Enable Skip Break Button
             readyButton.SetActive(true);
+
+            //Unlock a new tower
             turretShop.unlockTowers();
+
+            //Update Tower Buttons/Hotkeys
             turretShop.resetTowerButtons();
             turretShop.verifyTowerUnlocks();
 
-            //Enable Turret Shop at end of Wave
             //Unlock Mouse
             Cursor.lockState = CursorLockMode.Confined;
 
@@ -236,16 +252,11 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         SetKillCustomersText();
+        Debug.Log("SpawnMode = true");
         SpawnMode = true;
         BreakMode = false;
         readyButton.SetActive(false);
-        if(waveNumber == 4)
-        {
-            gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
-            gameObject.GetComponent<AudioSource>().volume  = 0.5f;
-            gameObject.GetComponent<AudioSource>().Play();
-        }
-        else if(waveNumber == 9)
+        if(waveNumber == 4 || waveNumber == 9)
         {
             gameObject.GetComponent<AudioSource>().clip = audioClipList[1];
             gameObject.GetComponent<AudioSource>().volume  = 0.5f;
@@ -254,7 +265,11 @@ public class GameController : MonoBehaviour
     }
 
     public void SkipToSpawnWave() {
+        //if(BuildMode!=true) { return; }
+        //if (currentWaitTimeRemaining > 28.0f) return;
+        Debug.Log("SKIPTOSPAWNWAVE");
         StopCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));
+        StopCoroutine(WaitTimeBetweenWavesTimer(waitTimeBetweenWaves));
         //StopAllCoroutines();
         currentWaitTimeRemaining = 1f;
         StartCoroutine(WaitTimeBetweenWavesTimer(currentWaitTimeRemaining));

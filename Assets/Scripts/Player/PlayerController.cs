@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
 
     [Header("Player Stats")]
-    public int attackDamage = 40;
+    public float attackDamage = 40.0f;
     public float attackRate = 0.5f;
     public float attackRadius = 2f;
     public float knockbackForce = 10;
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         move.y = 0;
         controller.Move(move * Time.deltaTime * playerSpeed);
     
-        if (move != Vector3.zero)
+        if (move != Vector3.zero && !animator.GetBool("Attack"))
         {
             gameObject.transform.forward = move;
             //Walk
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
                 Damage(hitEnemy.gameObject);
 
                 //Knockback
-                Knockback(hitEnemy);
+                //Knockback(hitEnemy);
             }
         }
     }
@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(attackRate);
+        animator.SetBool("Attack", false);
         canAttack = true;
     }
 
